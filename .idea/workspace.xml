@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="24ed8fa0-4a86-4ea0-94a9-2f3bee6154f0" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/fibonacci/.gitignore" />
-    </list>
+    <list default="true" id="24ed8fa0-4a86-4ea0-94a9-2f3bee6154f0" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -227,12 +225,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1491827580676</updated>
-      <workItem from="1491827583295" duration="288000" />
+      <workItem from="1491827583295" duration="388000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="437000" />
+    <option name="totallyTimeSpent" value="537000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />

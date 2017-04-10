@@ -1,0 +1,3 @@
+
+class CoinChanger
+end

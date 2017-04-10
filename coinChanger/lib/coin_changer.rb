@@ -1,14 +1,16 @@
 class CoinChanger
-  @coins = {1 => 50, 5 => 50, 10 => 50, 25 => 50, 100 => 50}
 
   def initialize(coin_denominations)
+    @coins = coin_denominations
   end
 
-  def give_change_for(amount)
-    if amount == 10
-      {10 => 1}
-    else
+  def change_for(amount)
+    if @coins.include?(amount)
+      {amount => 1}
+    elsif amount == 0
       {}
+    else
+      
     end
   end
 end

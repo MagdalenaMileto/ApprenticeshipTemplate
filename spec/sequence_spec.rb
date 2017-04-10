@@ -7,4 +7,10 @@ describe FibonacciSequence do
       expect(fibonacci.number_for(0)).to eq(0)
     end
   end
+
+  context 'when the position is 1' do
+    it 'should return 1' do
+      expect(fibonacci.number_for(1)).to eq(1)
+    end
+  end
 end

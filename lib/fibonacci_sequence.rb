@@ -1,6 +1,6 @@
 class FibonacciSequence
 
-  def number_for(_position)
-    0
+  def number_for(position)
+    position
   end
 end

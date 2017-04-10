@@ -14,10 +14,17 @@ describe CoinChanger do
     end
   end
 
-  context 'When the change needs more than one coin' do
-    it 'should return xs number of coins' do
-      expected_change = {10 => 2}
-      expect(coin_changer.change_for(20)).to eq(expected_change)
+  context 'When the amount is one more than any denomination' do
+    it 'should return one coin of 1 and one of the denomination - 1' do
+      expected_change = {1 => 1, 5 => 1}
+      expect(coin_changer.change_for(6)).to eq(expected_change)
+    end
+  end
+
+  context 'When the amount is 30' do
+    it 'should return one of 5 and one of 25' do
+      expected_change = {25 => 1, 5 => 1}
+      expect(coin_changer.change_for(30)).to eq(expected_change)
     end
   end
 end

@@ -7,6 +7,7 @@ class CoinChanger
   def change(amount)
     remaining = amount
     exchange = Hash.new
+
     @coins.each do |denomination|
       exchange[denomination] = remaining / denomination
       remaining = remaining % denomination

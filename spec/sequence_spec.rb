@@ -26,5 +26,11 @@ describe FibonacciSequence do
       expect{fibonacci.number_for(-3)}.to raise_error('the position must be positive')
     end
   end
+
+  context 'given a float number' do
+    it 'should raise and exception' do
+      expect{fibonacci.number_for(2.5).to raise_error('the position must be a Integer')}
+    end
+  end
 end
 

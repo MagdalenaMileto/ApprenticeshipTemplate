@@ -25,15 +25,33 @@ describe CoinChanger do
 
     context 'given a negative number' do
       it 'return an exception' do
-        expect{coin_changer.change(-3).to raise_error('Invalid amount of money, it should be
-        a positive entire')}
+        expect { coin_changer.change(-3).to raise_error('Invalid amount of money, it should be
+        a positive entire') }
       end
     end
 
     context 'given a negative number' do
       it 'return an exception' do
-        expect{coin_changer.change(3.4).to raise_error('Invalid amount of money, it should be
-        a positive entire')}
+        expect { coin_changer.change(3.4).to raise_error('Invalid amount of money, it should be
+        a positive entire') }
+      end
+    end
+  end
+
+  describe '#change' do
+    let(:weird_coin_changer) { CoinChanger.new([1, 7, 10]) }
+
+    context 'when the change its 14' do
+      it 'return 2 coins of 7' do
+        expected_change = {7 => 2}
+        expect(weird_coin_changer.change(14)).to eq(expected_change)
+      end
+    end
+
+    context 'when the change its 15' do
+      it 'return 2 coins of 7 and 1 of 1' do
+        expected_change = {7 => 2, 1 => 1}
+        expect(weird_coin_changer.change(15)).to eq(expected_change)
       end
     end
   end

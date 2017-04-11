@@ -22,5 +22,19 @@ describe CoinChanger do
         expect(coin_changer.change(177)).to eq(expected_change)
       end
     end
+
+    context 'given a negative number' do
+      it 'return an exception' do
+        expect{coin_changer.change(-3).to raise_error('Invalid amount of money, it should be
+        a positive entire')}
+      end
+    end
+
+    context 'given a negative number' do
+      it 'return an exception' do
+        expect{coin_changer.change(3.4).to raise_error('Invalid amount of money, it should be
+        a positive entire')}
+      end
+    end
   end
 end

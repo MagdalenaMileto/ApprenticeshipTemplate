@@ -18,7 +18,7 @@ class CoinChanger
 
     exchange.delete_if { |_, value| value.zero? }
   end
-
+  
   def valid?(amount)
     raise 'Invalid amount of money, it should be a positive entire' if amount < 0
     raise 'Invalid amount of money, it should be a positive entire' unless amount.is_a? Integer

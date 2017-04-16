@@ -20,32 +20,22 @@ public class ConvertNumbersTest {
     }
 
     @Test
-    public void convertNumber1() {
-        assertEquals(conversor.convert(1), "I");
-    }
-
-    @Test
-    public void convertNumber5() {
-        assertEquals(conversor.convert(5), "V");
-    }
-
-    @Test
     public void convertBasicNumbers() {
         assertEquals(conversor.convert(500), "D");
     }
 
     @Test
-    public void convertNumber2() {
-        assertEquals(conversor.convert(2), "II");
+    public void convertNumberAntecedentThatRest(){
+            assertEquals(conversor.convert(4), "IV");
     }
 
     @Test
-    public void convertNumber3(){
-        assertEquals(conversor.convert(3), "III");
+    public void convertACompoundNumber(){
+        assertEquals(conversor.convert(1800), "MDCCC");
     }
 
     @Test
-    public void convertNumber4(){
-        assertEquals(conversor.convert(4), "IV");
+    public void raiseAndExceptionForNumber3999(){
+        assertEquals(conversor.convert(3999), "The number must be positive and minor to 3001");
     }
 }

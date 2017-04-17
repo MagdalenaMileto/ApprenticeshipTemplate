@@ -1,22 +1,17 @@
 package numbers;
 
+import exceptions.InvalidNumberException;
+
 public class NumberConversor {
 
-    /*Si pongo la posición y le resto 1, voy a tener problemas porque me va a querer buscar la posicion -1
-    cuando la division da 0. AREGLAR */
-
-    public String convert(Integer number) {
+    public String convert(Integer number) throws Exception{
         validNumberBetween0and3000(number);
-        if (number != 0) {
             return this.miles(number) + this.cents(number) + this.decens(number) + units(number);
-        } else {
-            return " ";
         }
-    }
 
-    public void validNumberBetween0and3000(Integer number){
-        if (number <= 0 && number >= 3000){
-            throw new RuntimeException("The number must be positive and minor to 3001");
+    private void validNumberBetween0and3000(Integer number) throws Exception{
+        if (number <= 0 || number >= 3000){
+            throw new InvalidNumberException("The number must be positive and minor to 3001");
         }
     }
 

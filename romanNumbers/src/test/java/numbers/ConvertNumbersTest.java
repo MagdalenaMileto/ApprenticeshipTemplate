@@ -20,13 +20,23 @@ public class ConvertNumbersTest {
         conversor = new NumberConversor();
     }
     @Test
-    public void convertBasicNumbers() throws Exception {
+    public void convertBasicNumber() throws Exception {
         assertEquals(conversor.convert(500), "D");
     }
 
     @Test
     public void convertNumberAntecedentThatRest() throws Exception{
-            assertEquals(conversor.convert(4), "IV");
+        assertEquals(conversor.convert(9), "IX");
+    }
+
+    @Test
+    public void convertNumberWithTwoFigures() throws Exception{
+        assertEquals(conversor.convert(20), "XX");
+    }
+
+    @Test
+    public void convertNumberWithThreeFigures() throws Exception{
+        assertEquals(conversor.convert(250), "CCL");
     }
 
     @Test
@@ -35,21 +45,21 @@ public class ConvertNumbersTest {
     }
 
     @Test()
-    public void convertNumber0() throws Exception {
+    public void raiseExceptionForNumber0() throws Exception {
         expectedException.expect(InvalidNumberException.class);
         expectedException.expectMessage("The number must be positive and minor to 3001");
         conversor.convert(0);
     }
 
     @Test
-    public void raiseAndExceptionForNumber3999() throws Exception{
+    public void raiseExceptionForNumber3999() throws Exception{
         expectedException.expect(InvalidNumberException.class);
         expectedException.expectMessage("The number must be positive and minor to 3001");
         conversor.convert(3999);
     }
 
     @Test
-    public void raiseAndExceptionForNumberNegative1() throws Exception{
+    public void raiseExceptionForNumber1Negative() throws Exception{
         expectedException.expect(InvalidNumberException.class);
         expectedException.expectMessage("The number must be positive and minor to 3001");
         conversor.convert(-1);

@@ -12,6 +12,7 @@ class PokerCard
   end
 
   def valid?
+    raise 'Invalid card value' if value.nil?
     true
   end
 

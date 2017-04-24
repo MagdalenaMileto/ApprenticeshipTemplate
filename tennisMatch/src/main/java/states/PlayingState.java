@@ -3,28 +3,28 @@ package states;
 import scoreboard.Pair;
 import scoreboard.Point;
 
-public class Playing implements GameState {
+public class PlayingState implements GameState {
 
     Point points;
 
-    public Playing(Point startingPoints) {
+    public PlayingState(Point startingPoints) {
         points = startingPoints;
     }
 
-    public Playing() {
+    public PlayingState() {
         points = Point.Love;
     }
 
 
-    public Pair<GameState, GameState> pointAgainst(GameState otherState) {
+    public Pair<GameState, GameState> pointsAgainst(GameState otherState) {
         if (this.wasThirty()) {
             if (otherState.forty()) {
-                return new Pair<GameState, GameState>(new Deuce(), new Deuce());
+                return new Pair<GameState, GameState>(new DeuceState(), new DeuceState());
             } else {
-                return new Pair<GameState, GameState>(new Advantage(), otherState);
+                return new Pair<GameState, GameState>(new OnePointToWinState(), otherState);
             }
         } else {
-            return new Pair<GameState, GameState>(new Playing(points.next()), otherState);
+            return new Pair<GameState, GameState>(new PlayingState(points.next()), otherState);
         }
     }
 
@@ -41,9 +41,9 @@ public class Playing implements GameState {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Playing playing = (Playing) o;
+        PlayingState playingState = (PlayingState) o;
 
-        return points == playing.points;
+        return points == playingState.points;
     }
 
     @Override

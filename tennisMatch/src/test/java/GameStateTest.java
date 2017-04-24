@@ -1,9 +1,9 @@
 import org.junit.Test;
 import scoreboard.Pair;
 import scoreboard.Point;
-import states.Advantage;
+import states.OnePointToWinState;
 import states.GameState;
-import states.Playing;
+import states.PlayingState;
 
 import static org.junit.Assert.*;
 
@@ -12,21 +12,20 @@ public class GameStateTest {
     private Pair<GameState, GameState> result;
 
     @Test
-    public void playingAdvancesSelfToPLaying() {
-        result = new Playing().pointAgainst(new Playing());
-        assertEquals(new Playing(Point.Fifteen), result.getX());
+    public void testPlayingAdvancesSelfToPLaying() {
+        result = new PlayingState().pointsAgainst(new PlayingState());
+        assertEquals(new PlayingState(Point.Fifteen), result.getX());
     }
 
     @Test
-    public void playingDontAdvancesTheOtherState() {
-        result = new Playing().pointAgainst(new Playing());
-        assertEquals(new Playing(Point.Fifteen), result.getX());
+    public void testPlayingDontAdvancesTheOtherState() {
+        result = new PlayingState().pointsAgainst(new PlayingState());
+        assertEquals(new PlayingState(Point.Fifteen), result.getX());
     }
 
     @Test
-    public void thirtyAdvancesToAdvantage() {
-        result = new Playing(Point.Thirty).pointAgainst(new Playing());
-        assertEquals(new Advantage(), result.getX());
+    public void testThirtyAdvancesToOnePointToWinState() {
+        result = new PlayingState(Point.Thirty).pointsAgainst(new PlayingState());
+        assertEquals(new OnePointToWinState(), result.getX());
     }
-
 }

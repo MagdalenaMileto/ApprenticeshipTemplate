@@ -1,22 +1,21 @@
 package scoreboard;
 
 import states.GameState;
-import states.Playing;
+import states.PlayingState;
 
 public class Scoreboard {
 
-    GameState player1State = new Playing();
-    GameState player2State = new Playing();
+    GameState player1State = new PlayingState();
+    GameState player2State = new PlayingState();
 
     public void playerOneScored() {
-        Pair<GameState, GameState> result = player1State.pointAgainst(player2State);
+        Pair<GameState, GameState> result = player1State.pointsAgainst(player2State);
         player1State = result.getX();
         player2State = result.getY();
-
     }
 
     public void playerTwoScored() {
-        Pair<GameState, GameState> result = player2State.pointAgainst(player1State);
+        Pair<GameState, GameState> result = player2State.pointsAgainst(player1State);
         player2State = result.getX();
         player1State = result.getY();
     }

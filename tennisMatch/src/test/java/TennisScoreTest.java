@@ -27,7 +27,7 @@ public class TennisScoreTest {
     @Test
     public void testScoreGoes0To15() {
         scorePoints(1, scoreboardPlayer1, scoreboardPlayer2);
-        Assert.assertEquals(15, scoreboardPlayer1.points);
+        Assert.assertEquals(Point.Fiftheen, scoreboardPlayer1.points());
     }
 
     @Test

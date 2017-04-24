@@ -33,7 +33,7 @@ public class TennisScoreTest {
     @Test
     public void testScoreGoes15To30() {
         scorePoints(2, scoreboardPlayer1, scoreboardPlayer2);
-        Assert.assertEquals(30, scoreboardPlayer1.points);
+        Assert.assertEquals(Point.Thirty, scoreboardPlayer1.points());
     }
 
     @Test

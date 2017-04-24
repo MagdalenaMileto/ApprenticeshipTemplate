@@ -19,19 +19,25 @@ public class TennisScoreTest {
 
     @Test
     public void testScoreStartsIn0(){
-        Assert.assertEquals(0, scoreboardPlayer1.points());
+        Assert.assertEquals(0, scoreboardPlayer1.points);
     }
 
     @Test
     public void testScoreGoes0To15(){
         scorePoints(1, scoreboardPlayer1);
-        Assert.assertEquals(15, scoreboardPlayer1.points());
+        Assert.assertEquals(15, scoreboardPlayer1.points);
     }
 
     @Test
     public void testScoreGoes15To30(){
         scorePoints(2, scoreboardPlayer1);
-        Assert.assertEquals(30, scoreboardPlayer1.points());
+        Assert.assertEquals(30, scoreboardPlayer1.points);
 
+    }
+
+    @Test
+    public void testScoreGoes30To40(){
+        scorePoints(3, scoreboardPlayer1);
+        Assert.assertEquals(40, scoreboardPlayer1.points);
     }
 }

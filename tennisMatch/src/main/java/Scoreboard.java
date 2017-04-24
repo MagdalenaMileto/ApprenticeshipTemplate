@@ -5,10 +5,8 @@ public class Scoreboard {
     public void score() {
         if (points < 30) {
             points = points + 15;
+        } else {
+            points = 40;
         }
-    }
-
-    public int points() {
-        return points;
     }
 }

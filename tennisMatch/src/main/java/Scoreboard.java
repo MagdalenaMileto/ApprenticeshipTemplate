@@ -1,14 +1,21 @@
+import java.util.List;
+
 public class Scoreboard {
 
-    public int points = 0;
+    public int points;
+    public List<Integer> validPoints;
 
-    public void score_against(Scoreboard scoreboard2) {
-        if (points < 30) {
-            points = points + 15;
-        } else if (points == 30) {
-            points = points + 10;
-        } else if (points == 40 && scoreboard2.points < 40) {
+    public Scoreboard(){
+        points = 0;
+    }
+
+    public void scoreAgainst(Scoreboard scoreboard2) {
+        points += 1;
+    }
+
+    public Point points(){
+        if(points > 3){
             points = 0;
-        }
+        }return Point.values()[points];
     }
 }

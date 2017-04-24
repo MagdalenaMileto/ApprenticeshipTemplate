@@ -15,13 +15,13 @@ public class TennisScoreTest {
 
     public void scorePoints(int quantity, Scoreboard scoreboard, Scoreboard scoreboardPlayer2) {
         for (int i = 0; i < quantity; i++) {
-            scoreboard.score_against(scoreboardPlayer2);
+            scoreboard.scoreAgainst(scoreboardPlayer2);
         }
     }
 
     @Test
     public void testScoreStartsIn0() {
-        Assert.assertEquals(0, scoreboardPlayer1.points);
+        Assert.assertEquals(Point.Love, scoreboardPlayer1.points());
     }
 
     @Test

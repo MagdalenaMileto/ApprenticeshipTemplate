@@ -1,4 +1,4 @@
-describe 'Hands' do
+  describe 'Hands' do
 
   let(:card1) { PokerCard.new(PokerCard.values('1'), :C) }
   let(:card2) { PokerCard.new(PokerCard.values('2'), :C) }

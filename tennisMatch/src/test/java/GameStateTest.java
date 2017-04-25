@@ -3,10 +3,7 @@ import org.junit.Test;
 import scoreboard.Pair;
 import scoreboard.Point;
 import scoreboard.Scoreboard;
-import states.DeuceState;
-import states.Forty;
-import states.GameState;
-import states.PlayingState;
+import states.*;
 
 import static org.junit.Assert.*;
 
@@ -68,11 +65,11 @@ public class GameStateTest {
     }
 
     @Test
-    public void testForthyAdvanceToOnePointToWinStateWhenTheOtherIsInForthyToo(){
+    public void testDeuceAdvanceToAdvantageState(){
         result = scorePlayerOne(3);
         result2 = scorePlayerTwo(3);
         result = scorePlayerOne(1);
-        assertEquals(new Forty(), result.getX());
+        assertEquals(new AdvantageState(), result.getX());
         assertEquals(new DeuceState(), result.getY());
     }
 

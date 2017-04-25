@@ -5,7 +5,7 @@ import scoreboard.Pair;
 public class DeuceState implements GameState {
 
     public Pair<GameState, GameState> pointsAgainst(GameState otherState) {
-        return new Pair<GameState, GameState>(new Advantage(), otherState);
+        return new Pair<GameState, GameState>(new AdvantageState(), otherState);
     }
 
     public Boolean forty() {

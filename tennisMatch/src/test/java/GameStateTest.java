@@ -13,6 +13,7 @@ import static org.junit.Assert.*;
 public class GameStateTest {
 
     private Pair<GameState, GameState> result;
+    private Pair<GameState, GameState> result2;
 
     public Scoreboard scoreboard = new Scoreboard();
 
@@ -21,49 +22,48 @@ public class GameStateTest {
         scoreboard = new Scoreboard();
     }
     
-    public Pair score(int aQuantityOfTimes){
+    public Pair scorePlayerOne(int aQuantityOfTimes){
         for (int i = 0; i < aQuantityOfTimes; i++) {
             result = scoreboard.playerOneScored();
+        }
+        return result;
+    }
+    public Pair scorePlayerTwo(int aQuantityOfTimes){
+        for (int i = 0; i < aQuantityOfTimes; i++) {
+            result = scoreboard.playerTwoScored();
         }
         return result;
     }
 
     @Test
     public void testPlayingAdvancesSelfToPLaying() {
-        result = score(1);
+        result = scorePlayerOne(1);
         assertEquals(new PlayingState(Point.Fifteen), result.getX());
     }
 
     @Test
     public void testPlayingDontAdvancesTheOtherState() {
-        result = scoreboard.playerOneScored();
+        result = scorePlayerOne(1);
         assertEquals(new PlayingState(Point.Fifteen), result.getX());
     }
 
     @Test
     public void testPlayingAdvancesSelfToPLayingWithTwoPoints() {
-        result = scoreboard.playerTwoScored();
-        result = scoreboard.playerTwoScored();
+        result = scorePlayerOne(2);
         assertEquals(new PlayingState(Point.Thirty), result.getX());
     }
 
     @Test
     public void testThirtyAdvancesToOnePointToWinState() {
-        result = scoreboard.playerTwoScored();
-        result = scoreboard.playerTwoScored();
-        result = scoreboard.playerTwoScored();
+        result2 = scorePlayerTwo(3);
         assertEquals(new OnePointToWinState(), result.getX());
     }
 
     @Test
-    public void testBothPlayingsAdvanceTodeuce() {
-        result = scoreboard.playerOneScored();
-        result = scoreboard.playerOneScored();
-        result = scoreboard.playerOneScored();
-        result = scoreboard.playerTwoScored();
-        result = scoreboard.playerTwoScored();
-        result = scoreboard.playerTwoScored();
+    public void testBothPlayingsAdvanceToDeuce() {
+        result = scorePlayerOne(3);
+        result2 = scorePlayerTwo(3);
         assertEquals(new DeuceState(), result.getX());
-        assertEquals(new DeuceState(), result.getY());
+        assertEquals(new DeuceState(), result2.getY());
     }
 }

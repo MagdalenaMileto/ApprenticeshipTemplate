@@ -15,7 +15,6 @@ public class PlayingState implements GameState {
         points = Point.Love;
     }
 
-
     public Pair<GameState, GameState> pointsAgainst(GameState otherState) {
         if (this.wasThirty()) {
             if (otherState.forty()) {
@@ -36,6 +35,7 @@ public class PlayingState implements GameState {
         return points == Point.Thirty;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -45,7 +45,6 @@ public class PlayingState implements GameState {
 
         return points == playingState.points;
     }
-
     @Override
     public int hashCode() {
         return points.hashCode();

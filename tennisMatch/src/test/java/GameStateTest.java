@@ -3,6 +3,7 @@ import org.junit.Test;
 import scoreboard.Pair;
 import scoreboard.Point;
 import scoreboard.Scoreboard;
+import states.DeuceState;
 import states.OnePointToWinState;
 import states.GameState;
 import states.PlayingState;
@@ -19,10 +20,17 @@ public class GameStateTest {
     public void setUp(){
         scoreboard = new Scoreboard();
     }
+    
+    public Pair score(int aQuantityOfTimes){
+        for (int i = 0; i < aQuantityOfTimes; i++) {
+            result = scoreboard.playerOneScored();
+        }
+        return result;
+    }
 
     @Test
     public void testPlayingAdvancesSelfToPLaying() {
-        result = scoreboard.playerOneScored();
+        result = score(1);
         assertEquals(new PlayingState(Point.Fifteen), result.getX());
     }
 
@@ -45,5 +53,17 @@ public class GameStateTest {
         result = scoreboard.playerTwoScored();
         result = scoreboard.playerTwoScored();
         assertEquals(new OnePointToWinState(), result.getX());
+    }
+
+    @Test
+    public void testBothPlayingsAdvanceTodeuce() {
+        result = scoreboard.playerOneScored();
+        result = scoreboard.playerOneScored();
+        result = scoreboard.playerOneScored();
+        result = scoreboard.playerTwoScored();
+        result = scoreboard.playerTwoScored();
+        result = scoreboard.playerTwoScored();
+        assertEquals(new DeuceState(), result.getX());
+        assertEquals(new DeuceState(), result.getY());
     }
 }

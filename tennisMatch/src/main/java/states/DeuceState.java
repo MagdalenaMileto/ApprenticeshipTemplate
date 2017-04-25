@@ -11,4 +11,9 @@ public class DeuceState implements GameState {
     public Boolean forty() {
         return true;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj.getClass() == DeuceState.class;
+    }
 }

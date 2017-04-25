@@ -64,6 +64,6 @@ public class GameStateTest {
         result = scorePlayerOne(3);
         result2 = scorePlayerTwo(3);
         assertEquals(new DeuceState(), result.getX());
-        assertEquals(new DeuceState(), result2.getY());
+        assertEquals(new DeuceState(), result2.getX());
     }
 }

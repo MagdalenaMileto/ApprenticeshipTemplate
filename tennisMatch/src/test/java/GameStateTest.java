@@ -4,7 +4,7 @@ import scoreboard.Pair;
 import scoreboard.Point;
 import scoreboard.Scoreboard;
 import states.DeuceState;
-import states.OnePointToWinState;
+import states.Forty;
 import states.GameState;
 import states.PlayingState;
 
@@ -56,7 +56,7 @@ public class GameStateTest {
     @Test
     public void testThirtyAdvancesToOnePointToWinState() {
         result2 = scorePlayerTwo(3);
-        assertEquals(new OnePointToWinState(), result.getX());
+        assertEquals(new Forty(), result.getX());
     }
 
     @Test
@@ -72,7 +72,7 @@ public class GameStateTest {
         result = scorePlayerOne(3);
         result2 = scorePlayerTwo(3);
         result = scorePlayerOne(1);
-        assertEquals(new OnePointToWinState(), result.getX());
+        assertEquals(new Forty(), result.getX());
         assertEquals(new DeuceState(), result.getY());
     }
 
@@ -83,5 +83,15 @@ public class GameStateTest {
         result = scorePlayerOne(2);
         assertEquals(new PlayingState(), result.getX());
         assertEquals(new PlayingState(), result.getY());
+    }
+
+    @Test
+    public void testOnePlayerIsAdvanceAndTheOtherOneScoresAPointTheOneInAdvanceReturnsToFourthy(){
+        result = scorePlayerOne(3);
+        result2 = scorePlayerTwo(3);
+        result = scorePlayerOne(1);
+        result = scorePlayerTwo(1);
+        assertEquals(new DeuceState(), result.getX());
+        assertEquals(new DeuceState(), result.getY());
     }
 }

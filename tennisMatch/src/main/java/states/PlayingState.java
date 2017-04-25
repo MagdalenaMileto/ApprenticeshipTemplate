@@ -20,7 +20,7 @@ public class PlayingState implements GameState {
             if (otherState.forty()) {
                 return new Pair<GameState, GameState>(new DeuceState(), new DeuceState());
             } else {
-                return new Pair<GameState, GameState>(new OnePointToWinState(), otherState);
+                return new Pair<GameState, GameState>(new Forty(), otherState);
             }
         } else {
             return new Pair<GameState, GameState>(new PlayingState(points.next()), otherState);
@@ -31,10 +31,13 @@ public class PlayingState implements GameState {
         return false;
     }
 
+    public Boolean advantage() {
+        return false;
+    }
+
     private boolean wasThirty() {
         return points == Point.Thirty;
     }
-
 
     @Override
     public boolean equals(Object o) {
@@ -48,5 +51,9 @@ public class PlayingState implements GameState {
     @Override
     public int hashCode() {
         return points.hashCode();
+    }
+
+    public Pair<GameState, GameState> goBackToDeuce(GameState player1State) {
+        return null;
     }
 }

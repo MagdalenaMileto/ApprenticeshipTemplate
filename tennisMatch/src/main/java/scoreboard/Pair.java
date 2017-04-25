@@ -12,16 +12,8 @@ public class Pair<X, Y> {
     public X getX() {
         return x;
     }
-
-    public void setX(X x) {
-        this.x = x;
-    }
-
     public Y getY() {
         return y;
     }
 
-    public void setY(Y y) {
-        this.y = y;
-    }
 }

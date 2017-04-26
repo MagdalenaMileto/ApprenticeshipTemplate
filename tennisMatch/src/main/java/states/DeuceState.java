@@ -2,10 +2,13 @@ package states;
 
 import scoreboard.Pair;
 
-public class DeuceState implements GameState {
+public class DeuceState implements GameStateMachine {
 
-    public Pair<GameState, GameState> pointsAgainst(GameState otherState) {
-        return new Pair<GameState, GameState>(new AdvantageState(), otherState);
+    public Pair<GameStateMachine, GameStateMachine> pointsAgainst(GameStateMachine otherState) {
+        if(otherState.advantage()){
+            return new Pair<GameStateMachine, GameStateMachine>(this, new DeuceState());
+        }
+        return new Pair<GameStateMachine, GameStateMachine>(new AdvantageState(), otherState);
     }
 
     public Boolean forty() {
@@ -18,8 +21,5 @@ public class DeuceState implements GameState {
     @Override
     public boolean equals(Object obj) {
         return obj.getClass() == DeuceState.class;
-    }
-    public Pair<GameState, GameState> goBackToDeuce(GameState player1State) {
-        return null;
     }
 }

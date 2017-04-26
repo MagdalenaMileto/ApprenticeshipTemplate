@@ -1,13 +1,17 @@
 package states;
+
 import scoreboard.Pair;
 
-public class AdvantageState extends Forty {
+public class AdvantageState extends FortyState {
 
-    public Pair goBackToDeuce(GameState otherState){
-        return new Pair <GameState, GameState>(new DeuceState(), otherState);
+    public Pair pointsAgainst(GameStateMachine otherState) {
+            return new Pair<GameStateMachine, GameStateMachine>(new PlayingState(), new PlayingState());
     }
 
-    public Boolean advantage(){
+    public Boolean advantage() {
+        return true;
+    }
+    public Boolean forty() {
         return true;
     }
 

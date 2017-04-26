@@ -3,7 +3,7 @@ package states;
 import scoreboard.Pair;
 import scoreboard.Point;
 
-public class PlayingState implements GameState {
+public class PlayingState implements GameStateMachine {
 
     Point points;
 
@@ -15,22 +15,21 @@ public class PlayingState implements GameState {
         points = Point.Love;
     }
 
-    public Pair<GameState, GameState> pointsAgainst(GameState otherState) {
+    public Pair<GameStateMachine, GameStateMachine> pointsAgainst(GameStateMachine otherState) {
         if (this.wasThirty()) {
             if (otherState.forty()) {
-                return new Pair<GameState, GameState>(new DeuceState(), new DeuceState());
+                return new Pair<GameStateMachine, GameStateMachine>(new DeuceState(), new DeuceState());
             } else {
-                return new Pair<GameState, GameState>(new Forty(), otherState);
+                return new Pair<GameStateMachine, GameStateMachine>(new FortyState(), otherState);
             }
         } else {
-            return new Pair<GameState, GameState>(new PlayingState(points.next()), otherState);
+            return new Pair<GameStateMachine, GameStateMachine>(new PlayingState(points.next()), otherState);
         }
     }
 
     public Boolean forty() {
         return false;
     }
-
     public Boolean advantage() {
         return false;
     }
@@ -47,13 +46,5 @@ public class PlayingState implements GameState {
         PlayingState playingState = (PlayingState) o;
 
         return points == playingState.points;
-    }
-    @Override
-    public int hashCode() {
-        return points.hashCode();
-    }
-
-    public Pair<GameState, GameState> goBackToDeuce(GameState player1State) {
-        return null;
     }
 }

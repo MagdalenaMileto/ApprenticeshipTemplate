@@ -7,10 +7,10 @@ import states.*;
 
 import static org.junit.Assert.*;
 
-public class GameStateTest {
+public class GameStateMachineTest {
 
-    private Pair<GameState, GameState> result;
-    private Pair<GameState, GameState> result2;
+    private Pair<GameStateMachine, GameStateMachine> result;
+    private Pair<GameStateMachine, GameStateMachine> result2;
 
     public Scoreboard scoreboard = new Scoreboard();
 
@@ -53,7 +53,7 @@ public class GameStateTest {
     @Test
     public void testThirtyAdvancesToOnePointToWinState() {
         result2 = scorePlayerTwo(3);
-        assertEquals(new Forty(), result.getX());
+        assertEquals(new FortyState(), result.getX());
     }
 
     @Test
@@ -74,7 +74,7 @@ public class GameStateTest {
     }
 
     @Test
-    public void testAdvanceToOnePointWinsOverDeuceAndBothReturnToPlayingState(){
+    public void testAdvatangeWinsOverDeuceAndBothReturnToPlayingState(){
         result = scorePlayerOne(3);
         result2 = scorePlayerTwo(3);
         result = scorePlayerOne(2);
@@ -83,7 +83,7 @@ public class GameStateTest {
     }
 
     @Test
-    public void testOnePlayerIsAdvanceAndTheOtherOneScoresAPointTheOneInAdvanceReturnsToFourthy(){
+    public void testOnePlayerIsAdvanceAndTheOtherOneScoresAPointTheOneInAdvanceReturnsToForty(){
         result = scorePlayerOne(3);
         result2 = scorePlayerTwo(3);
         result = scorePlayerOne(1);

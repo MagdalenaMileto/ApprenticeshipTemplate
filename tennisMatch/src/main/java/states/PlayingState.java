@@ -33,8 +33,7 @@ public class PlayingState implements GameStateMachine {
     public Boolean advantage() {
         return false;
     }
-
-    private boolean wasThirty() {
+    private Boolean wasThirty() {
         return points == Point.Thirty;
     }
 

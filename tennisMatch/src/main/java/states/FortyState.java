@@ -1,8 +1,11 @@
 package states;
 
 import scoreboard.score.Pair;
+import scoreboard.score.Point;
 
 public class FortyState implements GameStateMachine {
+
+
     public Pair<GameStateMachine, GameStateMachine> pointsAgainst(GameStateMachine otherState) {
         return new Pair<GameStateMachine, GameStateMachine>(new PlayingState(), new PlayingState());
     }

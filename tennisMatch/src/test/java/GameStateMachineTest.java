@@ -83,8 +83,8 @@ public class GameStateMachineTest {
         result = scorePlayerOne(3);
         result2 = scorePlayerTwo(3);
         result = scorePlayerOne(2);
-        assertEquals(new PlayingState(), result.getX());
-        assertEquals(new PlayingState(), result.getY());
+        assertEquals(new PlayingState(Point.Love), result.getX());
+        assertEquals(new PlayingState(Point.Love), result.getY());
     }
 
     @Test
@@ -106,15 +106,15 @@ public class GameStateMachineTest {
 
     @Test
     public void testGameStatusReachFortyState(){
-        scorePlayerOne(3);
+        result = scorePlayerOne(3);
         match.status();
-        assertEquals(match.getGameStatus(), new FortyState());
+        assertEquals(match.getGameStatus(), new PlayingState());
     }
 
     @Test
     public void testGameStatusDeuceState(){
-        scorePlayerOne(3);
-        scorePlayerTwo(3);
+        result = scorePlayerOne(3);
+        result2 = scorePlayerTwo(3);
         match.status();
         assertEquals(match.getGameStatus(), new DeuceState());
     }

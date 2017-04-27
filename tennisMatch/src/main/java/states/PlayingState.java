@@ -20,6 +20,7 @@ public class PlayingState implements GameStateMachine {
             if (otherState.forty()) {
                 return new Pair<GameStateMachine, GameStateMachine>(new DeuceState(), new DeuceState());
             } else {
+                points = points.next();
                 return new Pair<GameStateMachine, GameStateMachine>(new FortyState(), otherState);
             }
         } else {
@@ -28,6 +29,9 @@ public class PlayingState implements GameStateMachine {
     }
 
     public Boolean forty() {
+        if(points == Point.Forty)
+            return true;
+            else
         return false;
     }
     public Boolean advantage() {

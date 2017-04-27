@@ -13,13 +13,6 @@ public class Match {
         gameStatus = _gameStatus;
     }
 
-    public void playerOneScored(){
-        scoreboard.playerOneScored();
-    }
-    public void playerTwoScored() {
-        scoreboard.playerTwoScored();
-    }
-
     public void status(){
         gameStatus = scoreboard.getGameStatus();
     }

@@ -1,7 +1,7 @@
 package states;
 
-import scoreboard.Pair;
-import scoreboard.Point;
+import scoreboard.score.Pair;
+import scoreboard.score.Point;
 
 public class PlayingState implements GameStateMachine {
 

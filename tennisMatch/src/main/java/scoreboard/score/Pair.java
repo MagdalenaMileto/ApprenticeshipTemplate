@@ -1,4 +1,4 @@
-package scoreboard;
+package scoreboard.score;
 
 public class Pair<X, Y> {
     private X x;

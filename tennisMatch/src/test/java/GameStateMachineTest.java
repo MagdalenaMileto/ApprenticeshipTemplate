@@ -1,8 +1,9 @@
 import org.junit.Before;
 import org.junit.Test;
-import scoreboard.Pair;
-import scoreboard.Point;
-import scoreboard.Scoreboard;
+import scoreboard.Match;
+import scoreboard.score.Pair;
+import scoreboard.score.Point;
+import scoreboard.score.Scoreboard;
 import states.*;
 
 import static org.junit.Assert.*;
@@ -13,6 +14,10 @@ public class GameStateMachineTest {
     private Pair<GameStateMachine, GameStateMachine> result2;
 
     public Scoreboard scoreboard = new Scoreboard();
+
+    GameStateMachine gameStatus;
+
+    public Match match = new Match(scoreboard, gameStatus);
 
     @Before
     public void setUp(){
@@ -90,5 +95,36 @@ public class GameStateMachineTest {
         result = scorePlayerTwo(1);
         assertEquals(new DeuceState(), result.getX());
         assertEquals(new DeuceState(), result.getY());
+    }
+
+    @Test
+    public void testGameStatusPlayingState(){
+        scorePlayerOne(2);
+        match.status();
+        assertEquals(match.getGameStatus(), new PlayingState());
+    }
+
+    @Test
+    public void testGameStatusReachFortyState(){
+        scorePlayerOne(3);
+        match.status();
+        assertEquals(match.getGameStatus(), new FortyState());
+    }
+
+    @Test
+    public void testGameStatusDeuceState(){
+        scorePlayerOne(3);
+        scorePlayerTwo(3);
+        match.status();
+        assertEquals(match.getGameStatus(), new DeuceState());
+    }
+
+    @Test
+    public void testGameStatusAdvantageState(){
+        scorePlayerOne(3);
+        scorePlayerTwo(3);
+        scorePlayerOne(1);
+        match.status();
+        assertEquals(match.getGameStatus(), new AdvantageState());
     }
 }

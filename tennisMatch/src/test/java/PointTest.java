@@ -1,5 +1,5 @@
 import org.junit.Test;
-import scoreboard.Point;
+import scoreboard.score.Point;
 
 import static org.junit.Assert.*;
 

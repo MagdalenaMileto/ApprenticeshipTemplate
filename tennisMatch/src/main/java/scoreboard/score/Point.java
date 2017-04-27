@@ -1,4 +1,4 @@
-package scoreboard;
+package scoreboard.score;
 
 public enum Point {
     Love,

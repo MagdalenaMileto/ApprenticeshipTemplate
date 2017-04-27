@@ -1,6 +1,6 @@
 package states;
 
-import scoreboard.Pair;
+import scoreboard.score.Pair;
 
 public class AdvantageState extends FortyState {
 

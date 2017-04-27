@@ -8,20 +8,20 @@ import states.*;
 
 import static org.junit.Assert.*;
 
-public class GameStateMachineTest {
+public class GameStateTest {
 
-    private Pair<GameStateMachine, GameStateMachine> result;
-    private Pair<GameStateMachine, GameStateMachine> result2;
+    private Pair<GameState, GameState> result;
+    private Pair<GameState, GameState> result2;
 
-    public Scoreboard scoreboard = new Scoreboard();
+    public Scoreboard scoreboard;
 
-    GameStateMachine gameStatus;
-
-    public Match match = new Match(scoreboard, gameStatus);
+    GameState gameStatus;
+    public Match match;
 
     @Before
     public void setUp(){
         scoreboard = new Scoreboard();
+        match = new Match(scoreboard, gameStatus);
     }
     
     public Pair scorePlayerOne(int aQuantityOfTimes){
@@ -106,15 +106,15 @@ public class GameStateMachineTest {
 
     @Test
     public void testGameStatusReachFortyState(){
-        result = scorePlayerOne(3);
+        scorePlayerOne(3);
         match.status();
-        assertEquals(match.getGameStatus(), new PlayingState());
+        assertEquals(match.getGameStatus(), new PlayingState(Point.Forty));
     }
 
     @Test
     public void testGameStatusDeuceState(){
         result = scorePlayerOne(3);
-        result2 = scorePlayerTwo(3);
+        result2 = scorePlayerTwo(21);
         match.status();
         assertEquals(match.getGameStatus(), new DeuceState());
     }
@@ -127,4 +127,10 @@ public class GameStateMachineTest {
         match.status();
         assertEquals(match.getGameStatus(), new AdvantageState());
     }
+
+    /*@Test
+    public void testPlayer1WinsGameDirectly(){
+        scorePlayerOne(4);
+        assertEquals(match.getSetsPlayer1(), 1);
+    }*/
 }

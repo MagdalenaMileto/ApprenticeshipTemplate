@@ -3,7 +3,7 @@ package states;
 import scoreboard.score.Pair;
 import scoreboard.score.Point;
 
-public class PlayingState implements GameStateMachine {
+public class PlayingState implements GameState {
 
     Point points;
 
@@ -15,23 +15,20 @@ public class PlayingState implements GameStateMachine {
         points = Point.Love;
     }
 
-    public Pair<GameStateMachine, GameStateMachine> pointsAgainst(GameStateMachine otherState) {
+    public Pair<GameState, GameState> pointsAgainst(GameState otherState) {
         if (this.wasThirty()) {
             if (otherState.forty()) {
-                return new Pair<GameStateMachine, GameStateMachine>(new DeuceState(), new DeuceState());
-            } else {
+                return new Pair<GameState, GameState>(new DeuceState(), new DeuceState());
+            } else{
                 points = points.next();
-                return new Pair<GameStateMachine, GameStateMachine>(new FortyState(), otherState);
+                return new Pair<GameState, GameState>(new FortyState(), otherState);
             }
         } else {
-            return new Pair<GameStateMachine, GameStateMachine>(new PlayingState(points.next()), otherState);
+            return new Pair<GameState, GameState>(new PlayingState(points.next()), otherState);
         }
     }
 
     public Boolean forty() {
-        if(points == Point.Forty)
-            return true;
-            else
         return false;
     }
     public Boolean advantage() {

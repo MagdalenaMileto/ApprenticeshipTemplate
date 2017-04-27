@@ -2,13 +2,13 @@ package states;
 
 import scoreboard.score.Pair;
 
-public class DeuceState implements GameStateMachine {
+public class DeuceState implements GameState {
 
-    public Pair<GameStateMachine, GameStateMachine> pointsAgainst(GameStateMachine otherState) {
+    public Pair<GameState, GameState> pointsAgainst(GameState otherState) {
         if(otherState.advantage()){
-            return new Pair<GameStateMachine, GameStateMachine>(this, new DeuceState());
+            return new Pair<GameState, GameState>(this, new DeuceState());
         }
-        return new Pair<GameStateMachine, GameStateMachine>(new AdvantageState(), otherState);
+        return new Pair<GameState, GameState>(new AdvantageState(), otherState);
     }
 
     public Boolean forty() {

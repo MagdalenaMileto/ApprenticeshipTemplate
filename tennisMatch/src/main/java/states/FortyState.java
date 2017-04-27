@@ -1,18 +1,22 @@
 package states;
 
 import scoreboard.score.Pair;
-import scoreboard.score.Point;
 
-public class FortyState implements GameStateMachine {
+public class FortyState implements GameState {
 
+    public Pair<GameState, GameState> pointsAgainst(GameState otherState) {
+        sumOneSetPoint();
+        return new Pair<GameState, GameState>(new PlayingState(), new PlayingState());
+    }
 
-    public Pair<GameStateMachine, GameStateMachine> pointsAgainst(GameStateMachine otherState) {
-        return new Pair<GameStateMachine, GameStateMachine>(new PlayingState(), new PlayingState());
+    public void sumOneSetPoint() {
+
     }
 
     public Boolean forty() {
         return true;
     }
+
     public Boolean advantage() {
         return false;
     }

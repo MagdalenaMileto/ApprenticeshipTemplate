@@ -1,6 +1,6 @@
 package board.states;
 
-import board.Game;
+import board.TennisMatch;
 import board.Point;
 import board.Score;
 
@@ -12,10 +12,10 @@ public class OneToWin implements GameState {
     AbstractMap.SimpleEntry<Integer, Point> closeToWin;
     AbstractMap.SimpleEntry<Integer, Point> otherPlayer;
 
-    Game tennisGame;
+    TennisMatch tennisTennisMatch;
 
-    public OneToWin(HashMap<Integer, Point> previousScore, Game game) {
-        tennisGame = game;
+    public OneToWin(HashMap<Integer, Point> previousScore, TennisMatch tennisMatch) {
+        tennisTennisMatch = tennisMatch;
         previousScore.forEach((player, score) -> {
                     if (score == Point.Forty) {
                         closeToWin = toTuple(player, score);
@@ -29,10 +29,10 @@ public class OneToWin implements GameState {
     @Override
     public void score(Integer player) {
         if (closeToWin.getKey() == player) {
-            tennisGame.newSet(closeToWin.getKey());
+            tennisTennisMatch.newSet(closeToWin.getKey());
         } else {
             if (otherPlayer.getValue() == Point.Thirty) {
-                tennisGame.setActualState(new Deuce(tennisGame));
+                tennisTennisMatch.setActualState(new Deuce(tennisTennisMatch));
             } else {
                 otherPlayer.setValue(otherPlayer.getValue().next());
             }

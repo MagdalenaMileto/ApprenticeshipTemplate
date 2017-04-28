@@ -1,5 +1,5 @@
-import board.Game;
-import board.GameSets;
+import board.TennisMatch;
+import board.NumberOfGames;
 import board.Point;
 import board.Score;
 import org.junit.Before;
@@ -9,53 +9,55 @@ import java.util.HashMap;
 
 import static org.junit.Assert.assertEquals;
 
-public class GameTest {
+public class TennisMatchTest {
 
-    Game game;
+    TennisMatch tennisMatch;
     HashMap<Integer, Point> previousScore;
-    GameSets sets;
+    NumberOfGames games = new NumberOfGames();
 
     @Before
     public void setUp() {
-        game = new Game();
+        tennisMatch = new TennisMatch(games);
         previousScore = new HashMap<Integer, Point>();
+
+
     }
 
     public void scorePlayerOne(Integer aQuantityOfTimes) {
         for (int i = 0; i < aQuantityOfTimes; i++) {
-            game.playerOneScored();
+            tennisMatch.playerOneScored();
         }
     }
 
     public void scorePlayerTwo(Integer aQuantityOfTimes) {
         for (int i = 0; i < aQuantityOfTimes; i++) {
-            game.playerTwoScored();
+            tennisMatch.playerTwoScored();
         }
     }
 
     @Test
     public void testPlayingAdvancesToPLayingWhenScoresOneTime() {
         scorePlayerOne(1);
-        assertEquals(game.score(), new Score(Point.Fifteen, Point.Love, false, false));
+        assertEquals(tennisMatch.score(), new Score(Point.Fifteen, Point.Love, false, false));
     }
 
     @Test
     public void testPlayingAdvancesToPLayingWhenScoresTwoTimes() {
         scorePlayerOne(2);
-        assertEquals(game.score(), new Score(Point.Thirty, Point.Love, false, false));
+        assertEquals(tennisMatch.score(), new Score(Point.Thirty, Point.Love, false, false));
     }
 
     @Test
     public void testPlayingAdvancesToOneToWinWhenScoresTreeTimes() {
         scorePlayerOne(3);
-        assertEquals(game.score(), new Score(Point.Forty, Point.Love, false, false));
+        assertEquals(tennisMatch.score(), new Score(Point.Forty, Point.Love, false, false));
     }
 
     @Test
     public void testBothPlayingsAdvanceTosDeuce() {
         scorePlayerOne(3);
         scorePlayerTwo(3);
-        assertEquals(game.score(), new Score(Point.Forty, Point.Forty, false, false));
+        assertEquals(tennisMatch.score(), new Score(Point.Forty, Point.Forty, false, false));
     }
 
     @Test
@@ -63,7 +65,7 @@ public class GameTest {
         scorePlayerOne(3);
         scorePlayerTwo(3);
         scorePlayerOne(1);
-        assertEquals(game.score(), new Score(Point.Forty, Point.Forty, true, false));
+        assertEquals(tennisMatch.score(), new Score(Point.Forty, Point.Forty, true, false));
     }
 
     @Test
@@ -71,7 +73,7 @@ public class GameTest {
         scorePlayerOne(3);
         scorePlayerTwo(3);
         scorePlayerOne(2);
-        assertEquals(game.score(), new Score(Point.Love, Point.Love, false, false));
+        assertEquals(tennisMatch.score(), new Score(Point.Love, Point.Love, false, false));
 
     }
 
@@ -81,12 +83,12 @@ public class GameTest {
         scorePlayerTwo(3);
         scorePlayerOne(1);
         scorePlayerTwo(1);
-        assertEquals(game.score(), new Score(Point.Forty, Point.Forty, false, false));
+        assertEquals(tennisMatch.score(), new Score(Point.Forty, Point.Forty, false, false));
     }
 
     @Test
     public void testOnePlayerWinsASetDirectly() {
         scorePlayerOne(4);
-        assertEquals(sets.getPlayerOneSets(), 1);
+        assertEquals(games.getPlayerOneSets(), 1);
     }
 }

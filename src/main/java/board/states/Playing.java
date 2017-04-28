@@ -1,6 +1,6 @@
 package board.states;
 
-import board.Game;
+import board.TennisMatch;
 import board.Point;
 import board.Score;
 
@@ -9,10 +9,10 @@ import java.util.HashMap;
 public class Playing implements GameState {
 
     HashMap<Integer, Point> scores = new HashMap<>();
-    Game tennisGame;
+    TennisMatch tennisTennisMatch;
 
-    public Playing(Game game) {
-        tennisGame = game;
+    public Playing(TennisMatch tennisMatch) {
+        tennisTennisMatch = tennisMatch;
         scores.put(1, Point.Love);
         scores.put(2, Point.Love);
     }
@@ -30,9 +30,9 @@ public class Playing implements GameState {
 
     private void newState() {
         if (scores.values().stream().anyMatch(score -> score == Point.Forty)) {
-            tennisGame.setActualState(new OneToWin(scores, tennisGame));
+            tennisTennisMatch.setActualState(new OneToWin(scores, tennisTennisMatch));
         } else {
-            tennisGame.setActualState(this);
+            tennisTennisMatch.setActualState(this);
         }
     }
 

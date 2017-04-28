@@ -3,14 +3,14 @@ package board;
 import board.states.GameState;
 import board.states.Playing;
 
-public class Game {
+public class TennisMatch {
 
     GameState actualState;
-    GameSets sets;
+    NumberOfGames games;
 
-    public Game() {
+    public TennisMatch(NumberOfGames games2) {
         this.actualState = new Playing(this);
-        this.sets = new GameSets();
+        this.games = games2;
     }
 
     public void playerOneScored() {
@@ -26,7 +26,7 @@ public class Game {
     }
 
     public void newSet(Integer player) {
-        sets.setFor(player);
+        games.setFor(player);
         this.setActualState(new Playing(this));
     }
 

@@ -1,6 +1,6 @@
 package board.states;
 
-import board.Game;
+import board.TennisMatch;
 import board.Point;
 import board.Score;
 
@@ -8,10 +8,10 @@ public class Deuce implements GameState {
 
     Integer playerWithAdvantage;
     Boolean tied;
-    Game tennisGame;
+    TennisMatch tennisTennisMatch;
 
-    public Deuce(Game game) {
-        tennisGame = game;
+    public Deuce(TennisMatch tennisMatch) {
+        tennisTennisMatch = tennisMatch;
         tied = true;
     }
 
@@ -22,7 +22,7 @@ public class Deuce implements GameState {
             tied = false;
         } else {
             if (playerWithAdvantage == player) {
-                tennisGame.newSet(player);
+                tennisTennisMatch.newSet(player);
             } else {
                 tied = true;
             }

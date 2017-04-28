@@ -19,6 +19,7 @@ public class GameTest {
     public void setUp() {
         game = new Game();
         previousScore = new HashMap<Integer, Point>();
+        sets = new GameSets();
     }
 
     public void scorePlayerOne(Integer aQuantityOfTimes) {
@@ -89,5 +90,4 @@ public class GameTest {
         scorePlayerOne(4);
         assertEquals(sets.getPlayerOneSets(), 1);
     }
-
 }

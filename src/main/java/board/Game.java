@@ -10,24 +10,31 @@ public class Game {
 
     public Game() {
         this.actualState = new Playing(this);
+        this.sets = new GameSets();
     }
 
     public void playerOneScored() {
         actualState.score(1);
     }
+
     public void playerTwoScored() {
         actualState.score(2);
+    }
+
+    public Score score() {
+        return actualState.score();
     }
 
     public void newSet(Integer player) {
         sets.setFor(player);
         this.setActualState(new Playing(this));
     }
+
     public void setActualState(GameState actualState) {
         this.actualState = actualState;
     }
 
-    public Score score() {
-    return actualState.score();
+    public GameState getActualState() {
+        return actualState;
     }
 }

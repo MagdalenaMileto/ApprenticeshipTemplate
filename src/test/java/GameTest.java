@@ -56,4 +56,31 @@ public class GameTest {
         assertEquals(game.score(), new Score(Point.Forty, Point.Forty, false, false));
     }
 
+    @Test
+    public void testBothPlayersInDeucePlayerOneScoresAndNowIsAdvantage(){
+        scorePlayerOne(3);
+        scorePlayerTwo(3);
+        scorePlayerOne(1);
+        assertEquals(game.score(), new Score(Point.Forty, Point.Forty, true, false));
+    }
+
+    @Test
+    public void testAdvatangeWinsOverDeuceAndBothReturnToPlayingState(){
+        scorePlayerOne(3);
+        scorePlayerTwo(3);
+        scorePlayerOne(2);
+        assertEquals(game.score(), new Score(Point.Love, Point.Love, false, false));
+
+    }
+
+
+    @Test
+    public void testOnePlayerIsAdvanceAndTheOtherOneScoresAPointTheOneInAdvanceReturnsToForty(){
+        scorePlayerOne(3);
+        scorePlayerTwo(3);
+        scorePlayerOne(1);
+        scorePlayerTwo(1);
+        assertEquals(game.score(), new Score(Point.Forty, Point.Forty, false, false));
+    }
+
 }

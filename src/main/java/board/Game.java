@@ -6,6 +6,7 @@ import board.states.Playing;
 public class Game {
 
     GameState actualState;
+    GameSets sets;
 
     public Game() {
         this.actualState = new Playing(this);
@@ -19,16 +20,14 @@ public class Game {
     }
 
     public void newSet(Integer player) {
-        //Lógica para sumar el set va acá
-        System.out.println(player);
+        sets.setFor(player);
         this.setActualState(new Playing(this));
     }
-
     public void setActualState(GameState actualState) {
         this.actualState = actualState;
     }
 
     public Score score() {
-        return actualState.score();
+    return actualState.score();
     }
 }

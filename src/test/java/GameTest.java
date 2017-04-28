@@ -1,4 +1,5 @@
 import board.Game;
+import board.GameSets;
 import board.Point;
 import board.Score;
 import org.junit.Before;
@@ -12,6 +13,7 @@ public class GameTest {
 
     Game game;
     HashMap<Integer, Point> previousScore;
+    GameSets sets;
 
     @Before
     public void setUp() {
@@ -80,6 +82,12 @@ public class GameTest {
         scorePlayerOne(1);
         scorePlayerTwo(1);
         assertEquals(game.score(), new Score(Point.Forty, Point.Forty, false, false));
+    }
+
+    @Test
+    public void testOnePlayerWinsASetDirectly() {
+        scorePlayerOne(4);
+        assertEquals(sets.getPlayerOneSets(), 1);
     }
 
 }

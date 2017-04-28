@@ -14,6 +14,7 @@ public class Game {
     public void playerOneScored() {
         actualState.score(1);
     }
+
     public void playerTwoScored() {
         actualState.score(2);
     }
@@ -27,7 +28,12 @@ public class Game {
     public void setActualState(GameState actualState) {
         this.actualState = actualState;
     }
-    public GameState getActualState(){
+
+    public GameState getActualState() {
         return actualState;
+    }
+
+    public Score getScore() {
+        return actualState.actualScore();
     }
 }

@@ -2,6 +2,7 @@ package board.states;
 
 import board.Game;
 import board.Point;
+import board.Score;
 
 import java.util.HashMap;
 
@@ -30,8 +31,4 @@ public class Playing implements GameState {
         }
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
-    }
 }

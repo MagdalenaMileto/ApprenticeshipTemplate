@@ -4,9 +4,7 @@ import scoreboard.Match;
 import scoreboard.score.Pair;
 import scoreboard.score.Point;
 import scoreboard.score.Scoreboard;
-import states.*;
-
-import static org.junit.Assert.*;
+import tennis.states.*;
 
 public class GameStateTest {
 

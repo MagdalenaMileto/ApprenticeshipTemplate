@@ -23,6 +23,11 @@ public class Playing implements GameState {
         this.newState();
     }
 
+    @Override
+    public Score actualScore() {
+        score.
+    }
+
     private void newState() {
         if (scores.values().stream().anyMatch(score -> score == Point.Forty)) {
             tennisGame.setActualState(new OneToWin(scores, tennisGame));

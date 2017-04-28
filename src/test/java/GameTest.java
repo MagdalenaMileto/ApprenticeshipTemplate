@@ -1,5 +1,6 @@
 import board.Game;
 import board.Point;
+import board.states.Deuce;
 import board.states.OneToWin;
 import board.states.Playing;
 import org.junit.Before;
@@ -20,7 +21,13 @@ public class GameTest {
         previousScore = new HashMap<Integer, Point>();
     }
 
-    public void score(Integer aQuantityOfTimes) {
+    public void scorePlayerOne(Integer aQuantityOfTimes) {
+        for (int i = 0; i < aQuantityOfTimes; i++) {
+            game.playerOneScored();
+        }
+    }
+
+    public void scorePlayerTwo(Integer aQuantityOfTimes) {
         for (int i = 0; i < aQuantityOfTimes; i++) {
             game.playerOneScored();
         }
@@ -28,20 +35,27 @@ public class GameTest {
 
     @Test
     public void testPlayingAdvancesToPLayingWhenScoresOneTime() {
-        score(1);
+        scorePlayerOne(1);
         assertEquals(game.getActualState(), new Playing(game));
     }
 
     @Test
     public void testPlayingAdvancesToPLayingWhenScoresTwoTimes() {
-        score(2);
+        scorePlayerOne(2);
         assertEquals(game.getActualState(), new Playing(game));
     }
 
     @Test
     public void testPlayingAdvancesToOneToWinWhenScoresTreeTimes() {
-        score(3);
+        scorePlayerOne(3);
         assertEquals(game.getActualState(), new OneToWin(previousScore, game));
+    }
+
+    @Test
+    public void testBothPlayingsAdvanceToDeuce(){
+        scorePlayerOne(3);
+        scorePlayerTwo(3);
+        assertEquals(game.getActualState(), new Deuce(game));
     }
 
 }

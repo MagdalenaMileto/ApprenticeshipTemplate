@@ -1,9 +1,4 @@
 /*
-    @Test
-    public void testThirtyAdvancesToOnePointToWinState() {
-        result2 = scorePlayerTwo(3);
-        assertEquals(new FortyState(), result.getX());
-    }
 
     @Test
     public void testBothPlayingsAdvanceToDeuce() {

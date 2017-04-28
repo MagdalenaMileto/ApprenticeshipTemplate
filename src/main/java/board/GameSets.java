@@ -1,8 +1,8 @@
 package board;
 
 public class GameSets {
-    int playerOneSets = 0;
-    int playerTwoSets = 0;
+    int playerOneSets;
+    int playerTwoSets;
 
     public void setFor(Integer player) {
         if (player == 1)

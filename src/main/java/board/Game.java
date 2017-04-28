@@ -33,8 +33,4 @@ public class Game {
     public void setActualState(GameState actualState) {
         this.actualState = actualState;
     }
-
-    public GameState getActualState() {
-        return actualState;
-    }
 }

@@ -1,6 +1,8 @@
 package board.states;
 
 import board.Game;
+import board.Point;
+import board.Score;
 
 public class Deuce implements GameState {
 
@@ -24,6 +26,18 @@ public class Deuce implements GameState {
             } else {
                 tied = true;
             }
+        }
+    }
+
+    @Override
+    public Score score() {
+        Point forty = Point.Forty;
+        if (tied) {
+            return new Score(forty, forty, false, false);
+        } else if (playerWithAdvantage == 1) {
+            return new Score(forty, forty, true, false);
+        } else {
+            return new Score(forty, forty, false, true);
         }
     }
 }

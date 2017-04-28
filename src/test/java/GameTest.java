@@ -1,9 +1,6 @@
 import board.Game;
 import board.Point;
 import board.Score;
-import board.states.Deuce;
-import board.states.OneToWin;
-import board.states.Playing;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -53,10 +50,10 @@ public class GameTest {
     }
 
     @Test
-    public void testBothPlayingsAdvanceToDeuce(){
+    public void testBothPlayingsAdvanceTosDeuce(){
         scorePlayerOne(3);
         scorePlayerTwo(3);
-        assertEquals(game.score(), new Deuce(game));
+        assertEquals(game.score(), new Score(Point.Forty, Point.Forty, false, false));
     }
 
 }

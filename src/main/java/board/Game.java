@@ -14,7 +14,6 @@ public class Game {
     public void playerOneScored() {
         actualState.score(1);
     }
-
     public void playerTwoScored() {
         actualState.score(2);
     }
@@ -29,11 +28,7 @@ public class Game {
         this.actualState = actualState;
     }
 
-    public GameState getActualState() {
-        return actualState;
-    }
-
-    public Score getScore() {
+    public Score score() {
         return actualState.score();
     }
 }

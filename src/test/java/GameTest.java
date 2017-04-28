@@ -36,7 +36,7 @@ public class GameTest {
     @Test
     public void testPlayingAdvancesToPLayingWhenScoresOneTime() {
         scorePlayerOne(1);
-        assertEquals(game.getActualState(), new Playing(game));
+        assertEquals(game.score(), new Playing(game));
     }
 
     @Test

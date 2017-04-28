@@ -5,5 +5,5 @@ import board.Score;
 public interface GameState {
     void score(Integer player);
 
-    Score actualScore();
+    Score score();
 }

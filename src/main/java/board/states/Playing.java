@@ -24,8 +24,8 @@ public class Playing implements GameState {
     }
 
     @Override
-    public Score actualScore() {
-        score.
+    public Score score() {
+        return new Score(scores.get(1), scores.get(2), false, false);
     }
 
     private void newState() {

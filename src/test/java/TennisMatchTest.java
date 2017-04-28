@@ -114,4 +114,20 @@ public class TennisMatchTest {
         assertEquals(games.getPlayerOneSets(), 1);
         assertEquals(games.getPlayerTwoSets(), 0);
     }
+
+    @Test
+    public void testTwoPlayerWinsOneGameAfterALotOfAdvantages() {
+        scorePlayerOne(3);
+        scorePlayerTwo(3);
+        scorePlayerOne(1);
+        scorePlayerTwo(1);
+        scorePlayerOne(1);
+        scorePlayerTwo(1);
+        scorePlayerOne(1);
+        scorePlayerTwo(1);
+        scorePlayerTwo(1);
+        scorePlayerTwo(1);
+        assertEquals(games.getPlayerOneSets(), 0);
+        assertEquals(games.getPlayerTwoSets(), 1);
+    }
 }

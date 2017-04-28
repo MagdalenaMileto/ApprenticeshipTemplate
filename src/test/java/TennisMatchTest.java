@@ -105,4 +105,13 @@ public class TennisMatchTest {
         assertEquals(games.getPlayerOneSets(), 2);
         assertEquals(games.getPlayerTwoSets(), 1);
     }
+
+    @Test
+    public void testOnePlayerWinsOneGameAfterADeuce() {
+        scorePlayerOne(3);
+        scorePlayerTwo(3);
+        scorePlayerOne(2);
+        assertEquals(games.getPlayerOneSets(), 1);
+        assertEquals(games.getPlayerTwoSets(), 0);
+    }
 }

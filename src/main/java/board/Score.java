@@ -22,4 +22,26 @@ public class Score {
                 ", player2Advantage=" + player2Advantage +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Score score = (Score) o;
+
+        if (player1Points != score.player1Points) return false;
+        if (player2Points != score.player2Points) return false;
+        if (!player1Advantage.equals(score.player1Advantage)) return false;
+        return player2Advantage.equals(score.player2Advantage);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = player1Points.hashCode();
+        result = 31 * result + player2Points.hashCode();
+        result = 31 * result + player1Advantage.hashCode();
+        result = 31 * result + player2Advantage.hashCode();
+        return result;
+    }
 }

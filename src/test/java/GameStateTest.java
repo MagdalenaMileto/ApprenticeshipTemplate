@@ -1,58 +1,4 @@
-import org.junit.Before;
-import org.junit.Test;
-import scoreboard.Match;
-import scoreboard.score.Pair;
-import scoreboard.score.Point;
-import scoreboard.score.Scoreboard;
-import tennis.states.*;
-
-public class GameStateTest {
-
-    private Pair<GameState, GameState> result;
-    private Pair<GameState, GameState> result2;
-
-    public Scoreboard scoreboard;
-
-    GameState gameStatus;
-    public Match match;
-
-    @Before
-    public void setUp(){
-        scoreboard = new Scoreboard();
-        match = new Match(scoreboard, gameStatus);
-    }
-    
-    public Pair scorePlayerOne(int aQuantityOfTimes){
-        for (int i = 0; i < aQuantityOfTimes; i++) {
-            result = scoreboard.playerOneScored();
-        }
-        return result;
-    }
-    public Pair scorePlayerTwo(int aQuantityOfTimes){
-        for (int i = 0; i < aQuantityOfTimes; i++) {
-            result = scoreboard.playerTwoScored();
-        }
-        return result;
-    }
-
-    @Test
-    public void testPlayingAdvancesSelfToPLaying() {
-        result = scorePlayerOne(1);
-        assertEquals(new PlayingState(Point.Fifteen), result.getX());
-    }
-
-    @Test
-    public void testPlayingDontAdvancesTheOtherState() {
-        result = scorePlayerOne(1);
-        assertEquals(new PlayingState(Point.Fifteen), result.getX());
-    }
-
-    @Test
-    public void testPlayingAdvancesSelfToPLayingWithTwoPoints() {
-        result = scorePlayerOne(2);
-        assertEquals(new PlayingState(Point.Thirty), result.getX());
-    }
-
+/*
     @Test
     public void testThirtyAdvancesToOnePointToWinState() {
         result2 = scorePlayerTwo(3);
@@ -126,9 +72,9 @@ public class GameStateTest {
         assertEquals(match.getGameStatus(), new AdvantageState());
     }
 
-    /*@Test
+    @Test
     public void testPlayer1WinsGameDirectly(){
         scorePlayerOne(4);
         assertEquals(match.getSetsPlayer1(), 1);
-    }*/
-}
+    }
+}*/

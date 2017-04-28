@@ -11,11 +11,10 @@ public class Game {
         this.actualState = new Playing(this);
     }
 
-    public void player1Scored() {
+    public void playerOneScored() {
         actualState.score(1);
     }
-
-    public void player2Scored() {
+    public void playerTwoScored() {
         actualState.score(2);
     }
 
@@ -27,5 +26,8 @@ public class Game {
 
     public void setActualState(GameState actualState) {
         this.actualState = actualState;
+    }
+    public GameState getActualState(){
+        return actualState;
     }
 }

@@ -1,8 +1,7 @@
+import board.Point;
 import org.junit.Test;
-import scoreboard.score.Point;
 
-import static org.junit.Assert.*;
-
+import static org.junit.Assert.assertEquals;
 
 public class PointTest {
 

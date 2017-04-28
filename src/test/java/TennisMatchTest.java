@@ -130,4 +130,31 @@ public class TennisMatchTest {
         assertEquals(games.getPlayerOneSets(), 0);
         assertEquals(games.getPlayerTwoSets(), 1);
     }
+
+    @Test
+    public void TestOnePlayerReachSixAndDoesntWinBecauseTheOtherHasFive(){
+        scorePlayerOne(20);
+        scorePlayerTwo(24);
+        assertEquals(games.getPlayerOneSets(), 5);
+        assertEquals(games.getPlayerTwoSets(), 6);
+
+    }
+
+    @Test
+    public void TestOnePlayerReachSevenAndWinsBecauseTheOtherHasFive(){
+        scorePlayerOne(20);
+        scorePlayerTwo(30);
+        assertEquals(games.getPlayerOneSets(), 5);
+        assertEquals(games.getPlayerTwoSets(), 7);
+    }
+    @Test
+    public void TestTennisMatchStopsWhenAPlayerWins(){
+        scorePlayerOne(20);
+        //Se queda en 7 por más que siga escoreando porque el 2 ya ganó y se corta el flujo.
+        scorePlayerTwo(40);
+        assertEquals(games.getPlayerOneSets(), 5);
+        assertEquals(games.getPlayerTwoSets(), 7);
+
+    }
+
 }

@@ -18,7 +18,6 @@ public class TennisMatch {
     public void playerOneScored() {
         actualState.score(1);
     }
-
     public void playerTwoScored() {
         actualState.score(2);
     }
@@ -27,11 +26,16 @@ public class TennisMatch {
         return actualState.score();
     }
 
-    public void newSet(Integer player) {
-        games.setFor(player);
-        this.setActualState(new Playing(this));
+    public void winner(int playerNumber){
+        System.out.println("The winner is player number"+ playerNumber);
+        games = new NumberOfGames();
+        new TennisMatch(games);
     }
 
+    public void newSet(Integer player) {
+        games.setFor(player, this);
+        this.setActualState(new Playing(this));
+    }
     public void setActualState(GameState actualState) {
         this.actualState = actualState;
     }

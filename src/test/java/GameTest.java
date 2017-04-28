@@ -1,5 +1,6 @@
 import board.Game;
 import board.Point;
+import board.Score;
 import board.states.Deuce;
 import board.states.OneToWin;
 import board.states.Playing;
@@ -36,26 +37,26 @@ public class GameTest {
     @Test
     public void testPlayingAdvancesToPLayingWhenScoresOneTime() {
         scorePlayerOne(1);
-        assertEquals(game.score(), new Playing(game));
+        assertEquals(game.score(), new Score(Point.Fifteen, Point.Love, false, false));
     }
 
     @Test
     public void testPlayingAdvancesToPLayingWhenScoresTwoTimes() {
         scorePlayerOne(2);
-        assertEquals(game.getActualState(), new Playing(game));
+        assertEquals(game.score(), new Score(Point.Thirty, Point.Love, false, false));
     }
 
     @Test
     public void testPlayingAdvancesToOneToWinWhenScoresTreeTimes() {
         scorePlayerOne(3);
-        assertEquals(game.getActualState(), new OneToWin(previousScore, game));
+        assertEquals(game.score(), new Score(Point.Forty, Point.Love, false, false));
     }
 
     @Test
     public void testBothPlayingsAdvanceToDeuce(){
         scorePlayerOne(3);
         scorePlayerTwo(3);
-        assertEquals(game.getActualState(), new Deuce(game));
+        assertEquals(game.score(), new Deuce(game));
     }
 
 }

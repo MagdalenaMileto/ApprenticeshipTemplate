@@ -87,8 +87,22 @@ public class TennisMatchTest {
     }
 
     @Test
-    public void testOnePlayerWinsASetDirectly() {
+    public void testOnePlayerWinsAGameDirectly() {
         scorePlayerOne(4);
         assertEquals(games.getPlayerOneSets(), 1);
+    }
+
+    @Test
+    public void testOnePlayerWinsTwoGamesDirectly() {
+        scorePlayerOne(8);
+        assertEquals(games.getPlayerOneSets(), 2);
+    }
+
+    @Test
+    public void testOnePlayerWinsTwoGamesDirectlyAndThePlayerTwoWinsOne() {
+        scorePlayerOne(8);
+        scorePlayerTwo(4);
+        assertEquals(games.getPlayerOneSets(), 2);
+        assertEquals(games.getPlayerTwoSets(), 1);
     }
 }

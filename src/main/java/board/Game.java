@@ -34,6 +34,6 @@ public class Game {
     }
 
     public Score getScore() {
-        return actualState.actualScore();
+        return actualState.score();
     }
 }

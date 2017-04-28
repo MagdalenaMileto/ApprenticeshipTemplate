@@ -29,7 +29,7 @@ public class GameTest {
 
     public void scorePlayerTwo(Integer aQuantityOfTimes) {
         for (int i = 0; i < aQuantityOfTimes; i++) {
-            game.playerOneScored();
+            game.playerTwoScored();
         }
     }
 

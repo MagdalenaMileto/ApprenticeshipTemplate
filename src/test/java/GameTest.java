@@ -50,14 +50,14 @@ public class GameTest {
     }
 
     @Test
-    public void testBothPlayingsAdvanceTosDeuce(){
+    public void testBothPlayingsAdvanceTosDeuce() {
         scorePlayerOne(3);
         scorePlayerTwo(3);
         assertEquals(game.score(), new Score(Point.Forty, Point.Forty, false, false));
     }
 
     @Test
-    public void testBothPlayersInDeucePlayerOneScoresAndNowIsAdvantage(){
+    public void testBothPlayersInDeucePlayerOneScoresAndNowIsAdvantage() {
         scorePlayerOne(3);
         scorePlayerTwo(3);
         scorePlayerOne(1);
@@ -65,7 +65,7 @@ public class GameTest {
     }
 
     @Test
-    public void testAdvatangeWinsOverDeuceAndBothReturnToPlayingState(){
+    public void testAdvatangeWinsOverDeuceAndBothReturnToPlayingState() {
         scorePlayerOne(3);
         scorePlayerTwo(3);
         scorePlayerOne(2);
@@ -73,9 +73,8 @@ public class GameTest {
 
     }
 
-
     @Test
-    public void testOnePlayerIsAdvanceAndTheOtherOneScoresAPointTheOneInAdvanceReturnsToForty(){
+    public void testOnePlayerIsAdvanceAndTheOtherOneScoresAPointTheOneInAdvanceReturnsToForty() {
         scorePlayerOne(3);
         scorePlayerTwo(3);
         scorePlayerOne(1);

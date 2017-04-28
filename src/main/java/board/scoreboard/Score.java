@@ -1,4 +1,4 @@
-package board;
+package board.scoreboard;
 
 public class Score {
     Point player1Points;

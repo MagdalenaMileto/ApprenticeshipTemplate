@@ -1,8 +1,8 @@
 package board.states;
 
 import board.TennisMatch;
-import board.Point;
-import board.Score;
+import board.scoreboard.Point;
+import board.scoreboard.Score;
 
 import java.util.AbstractMap;
 import java.util.HashMap;

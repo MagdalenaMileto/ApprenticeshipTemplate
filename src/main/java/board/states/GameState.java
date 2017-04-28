@@ -1,6 +1,6 @@
 package board.states;
 
-import board.Score;
+import board.scoreboard.Score;
 
 public interface GameState {
     void score(Integer player);

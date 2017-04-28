@@ -1,4 +1,4 @@
-import board.Point;
+import board.scoreboard.Point;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

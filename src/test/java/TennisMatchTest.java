@@ -1,7 +1,7 @@
 import board.TennisMatch;
-import board.NumberOfGames;
-import board.Point;
-import board.Score;
+import board.scoreboard.NumberOfGames;
+import board.scoreboard.Point;
+import board.scoreboard.Score;
 import org.junit.Before;
 import org.junit.Test;
 

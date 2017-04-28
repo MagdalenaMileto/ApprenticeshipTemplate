@@ -1,5 +1,7 @@
 package board;
 
+import board.scoreboard.NumberOfGames;
+import board.scoreboard.Score;
 import board.states.GameState;
 import board.states.Playing;
 

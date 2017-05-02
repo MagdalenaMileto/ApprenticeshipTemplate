@@ -11,6 +11,6 @@ class Llamada
   end
 
   def monto
-    tipo_facturador_llamada.calcular_monto(this)
+    @tipo_facturador_llamada.calcular_monto(this)
   end
 end

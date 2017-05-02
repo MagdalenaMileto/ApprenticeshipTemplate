@@ -33,7 +33,7 @@ describe Factura do
     context 'dada una llamada nacional de 5 minutos' do
       let(:factura) { Factura.new('Mayo', llamada_nacional) }
       it 'returns 11' do
-        expect(llamada_nacional.total_amount).to eq(11.5)
+        expect(llamada_nacional.gastos_llamadas).to eq(11.5)
       end
     end
   end

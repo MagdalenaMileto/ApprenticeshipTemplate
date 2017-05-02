@@ -5,8 +5,16 @@ class Factura
     @llamadas = llamadas
   end
 
-  def total_amount
-    @calls.monto_total()
+  def monto_total
+    monto_base + gastos_llamadas
+  end
+
+  def gastos_llamadas
+    @llamadas.each { |llamadas| llamadas.monto}
+  end
+
+  def monto_base
+    10
   end
 
 end

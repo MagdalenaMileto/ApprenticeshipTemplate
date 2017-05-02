@@ -1,8 +1,9 @@
 require 'rspec'
 
 describe Bill do
+  let(:time_zone_rush_hour) { TimeZone.new(0.20) }
   let(:basic_payment) { Call.new() }
-  let(:local_call) { LocalCall.new() }
+  let(:local_call) { LocalCall.new(time_zone_rush_hour, 5) }
 
   describe '#total_amount' do
     context 'given a basic call billing' do

@@ -1,7 +1,9 @@
 class FacturadorLocal
 
-  def calcular_monto(franja_horaria, duracion)
-    precio_base + precio_por_duracion(franja_horaria, duracion)
+  def calcular_monto(llamada)
+    franja_horaria = llamada.franja_horaria
+    duracion = llamada.duracion
+    precio_por_duracion(franja_horaria, duracion)
   end
 
   def precio_por_duracion(franja_horaria, duracion)

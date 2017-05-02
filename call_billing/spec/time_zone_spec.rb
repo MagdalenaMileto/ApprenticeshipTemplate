@@ -1,17 +1,17 @@
 require 'rspec'
 
-describe TimeZone do
-  let(:time_zone_rush_hour) { TimeZone.new(0.20) }
-  describe '#price_per_minute' do
-    it 'returns 0.20' do
-      expect(time_zone_rush_hour.price_per_minute).to eq(0.20)
+describe FranjaHoraria do
+  let(:hora_pico) { FranjaHoraria.new(0.20) }
+  describe '#precio_por_minuto' do
+    it 'retorna 0.20' do
+      expect(hora_pico.precio_por_minuto).to eq(0.20)
     end
   end
 
-  let(:time_zone_normal_hour) { TimeZone.new(0.10) }
-  describe '#price_per_minute' do
-    it 'returns 0.10' do
-      expect(time_zone_normal_hour.price_per_minute).to eq(0.10)
+  let(:hora_normal) { FranjaHoraria.new(0.10) }
+  describe '#precio_por_minuto' do
+    it 'retorna 0.10' do
+      expect(hora_normal.precio_por_minuto).to eq(0.10)
     end
   end
 end

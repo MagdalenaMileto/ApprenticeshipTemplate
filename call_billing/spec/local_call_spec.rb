@@ -1,12 +1,12 @@
 require 'rspec'
 
-describe LocalCall do
+describe LlamadaLocal do
 
-  let(:time_zone_rush_hour) { TimeZone.new(0.20) }
-  let(:local_call) { LocalCall.new(time_zone_rush_hour, 5) }
-  describe '#price_duration' do
-    it 'returns price * duration' do
-      expect(local_call.price_duration).to eq(1)
+  let(:hora_pico) { FranjaHoraria.new(0.20) }
+  let(:llamada_local) { LlamadaLocal.new(hora_pico, 5) }
+  describe '#precio_por_duracion' do
+    it 'retorna precio por duracion' do
+      expect(llamada_local.precio_por_duracion).to eq(1)
     end
   end
 end

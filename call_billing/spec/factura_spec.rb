@@ -4,19 +4,18 @@ describe Factura do
   let(:abono_basico) { Llamada.new(facturador, hora_pico, 5, 'Argentina', 'Argentina') }
   let(:hora_pico) { FranjaHoraria.new(0.20) }
   let(:hora_normal) { FranjaHoraria.new(0.10) }
+  let(:facturador) { Facturador.new() }
 
   describe '#monto_total' do
     context 'dada una factura con abono mensual basico' do
-      let(:factura) { Factura.new('Mayo', abono_basico) }
-      let(:facturador) { Facturador.new() }
+      let(:factura) { Factura.new('Mayo',  facturador) }
       it 'retorna 10 pesos de pago basico' do
-        expect(abono_basico.monto).to eq(10)
+        expect(factura.monto_total).to eq(10)
       end
     end
 
     context 'dada una llamada local realizada en horario pico durante 5 minutos a un costo de 0.20 el minuto' do
-      let(:llamada_local) { LlamadaLocal.new(hora_pico, 5) }
-      let(:factura) { Factura.new('Mayo', llamada_local) }
+      let(:factura) { Factura.new('Mayo', facturador) }
       it 'retorna 11 pesos' do
         expect(llamada_local.monto_total).to eq(11)
       end

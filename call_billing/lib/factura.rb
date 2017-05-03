@@ -10,4 +10,8 @@ class Factura
     @llamadas.inject(10) { |sum, llamada| sum + @facturador.monto_para(llamada)}
   end
 
+  def agregar_llamada(llamada)
+    @llamadas << llamada
+  end
+
 end

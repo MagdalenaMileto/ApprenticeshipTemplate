@@ -1,31 +1,32 @@
 require 'rspec'
 
 describe Factura do
-  let(:abono_basico) { Llamada.new(facturador, hora_pico, 5, 'Argentina', 'Argentina') }
   let(:hora_pico) { FranjaHoraria.new(0.20) }
   let(:hora_normal) { FranjaHoraria.new(0.10) }
-  let(:facturador) { Facturador.new() }
+  let(:facturador) { FacturadorLocal.new() }
+  let(:factura) { Factura.new('Mayo', facturador) }
 
   describe '#monto_total' do
     context 'dada una factura con abono mensual basico' do
-      let(:factura) { Factura.new('Mayo',  facturador) }
+      let(:llamada_local) { Llamada.new(facturador, hora_pico, 5, 'Argentina', 'Argentina') }
       it 'retorna 10 pesos de pago basico' do
         expect(factura.monto_total).to eq(10)
       end
     end
 
     context 'dada una llamada local realizada en horario pico durante 5 minutos a un costo de 0.20 el minuto' do
-      let(:factura) { Factura.new('Mayo', facturador) }
+      let(:llamada_local) { Llamada.new(facturador, hora_pico, 5, 'Argentina', 'Argentina') }
       it 'retorna 11 pesos' do
-        expect(llamada_local.monto_total).to eq(11)
+        factura.agregar_llamada(llamada_local)
+        expect(factura.monto_total).to eq(11)
       end
     end
 
     context 'dada una llamada local realizada en horario normal durante 10 minutos a un costo de 0.10 el minuto' do
-      let(:llamada_local) { LlamadaLocal.new(hora_normal, 10) }
-      let(:factura) { Factura.new('Mayo', llamada_local) }
+      let(:llamada_local) { Llamada.new(facturador, hora_normal, 10, 'Argentina', 'Argentina') }
       it 'returns 11' do
-        expect(llamada_local.monto_total).to eq(11)
+        factura.agregar_llamada(llamada_local)
+        expect(factura.monto_total).to eq(11)
       end
     end
 

@@ -1,8 +1,9 @@
 class Factura
 
-  def initialize(mes, llamadas)
+  def initialize(mes, llamadas, o_facturador)
     @mes = mes
     @llamadas = llamadas
+    @facturador = o_facturador
   end
 
   def monto_total
@@ -10,7 +11,7 @@ class Factura
   end
 
   def gastos_llamadas
-    @llamadas.each { |llamadas| llamadas.monto}
+    @llamadas.sum { |llamada| @facturador.monto_para(llamada)} || 0
   end
 
   def monto_base

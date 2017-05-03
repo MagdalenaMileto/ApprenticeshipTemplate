@@ -1,16 +1,16 @@
 require 'rspec'
 
 describe Factura do
-  let(:abono_basico) { Llamada.new() }
+  let(:abono_basico) { Llamada.new(facturador, hora_pico, 5, 'Argentina', 'Argentina') }
   let(:hora_pico) { FranjaHoraria.new(0.20) }
   let(:hora_normal) { FranjaHoraria.new(0.10) }
-  let(:llamada_nacional) { LlamadaNacionalOInternacional.new('Argentina', 'Brazil') }
 
   describe '#monto_total' do
     context 'dada una factura con abono mensual basico' do
       let(:factura) { Factura.new('Mayo', abono_basico) }
+      let(:facturador) { Facturador.new() }
       it 'retorna 10 pesos de pago basico' do
-        expect(abono_basico.monto_total).to eq(10)
+        expect(abono_basico.monto).to eq(10)
       end
     end
 

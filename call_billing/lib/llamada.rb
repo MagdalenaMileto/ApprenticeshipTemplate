@@ -1,7 +1,7 @@
 class Llamada
   attr_reader :franja_horaria, :duracion
 
-  def initialize(tipo_facturador_llamada, franja_horaria, duracion, pais_origen, pais_destino)
+  def var(tipo_facturador_llamada, franja_horaria, duracion, pais_origen, pais_destino)
     @tipo_facturador_llamada = tipo_facturador_llamada
     @franja_horaria = franja_horaria
     @duracion = duracion

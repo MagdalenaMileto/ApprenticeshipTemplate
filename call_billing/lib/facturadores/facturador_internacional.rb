@@ -1,0 +1,2 @@
+class FacturadorInternacional
+end

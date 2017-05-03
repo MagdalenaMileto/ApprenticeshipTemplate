@@ -40,5 +40,12 @@ describe Factura do
         expect(factura2.monto_total).to eq(13)
       end
     end
+
+    context 'dada una llamada internacional a sudamerica durante 10 minutos' do
+      it 'retorna 15 pesos' do
+        let(:llamada_nacional) { Llamada.new(facturador_nacional, hora_normal, 10, 'Argentina', 'Argentina') }
+        let(:factura2) { Factura.new('Mayo', facturador_nacional) }
+      end
+    end
   end
 end

@@ -7,7 +7,7 @@ describe FacturadorLocal do
   let(:facturador_local) { FacturadorLocal.new() }
   describe '#precio_por_duracion' do
     it 'retorna precio por duracion' do
-      expect(facturador_local.precio_por_duracion(hora_pico, 5)).to eq(1)
+      expect(facturador_local.calcular_monto(hora_pico, 5)).to eq(1)
     end
   end
 end

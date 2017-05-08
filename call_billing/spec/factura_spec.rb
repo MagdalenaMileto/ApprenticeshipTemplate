@@ -10,14 +10,14 @@ describe Factura do
 
   describe '#monto_total' do
     context 'dada una factura con abono mensual basico' do
-      let(:llamada_local) { Llamada.new(hora_pico, 5) }
+      let(:llamada_local) { Llamada.new(hora_pico, 5, '541162458185', '541162457898') }
       it 'retorna 10 pesos de pago basico' do
         expect(factura1.monto_total).to eq(10)
       end
     end
 
     context 'dada una llamada local realizada en horario pico durante 5 minutos a un costo de 0.20 el minuto' do
-      let(:llamada_local) { Llamada.new(hora_pico, 5) }
+      let(:llamada_local) { Llamada.new(hora_pico, 5, '541162458185', '541162457898') }
       it 'retorna 11 pesos' do
         factura1.agregar_llamada(llamada_local)
         expect(factura1.monto_total).to eq(11)
@@ -25,7 +25,7 @@ describe Factura do
     end
 
     context 'dada una llamada local realizada en horario normal durante 10 minutos a un costo de 0.10 el minuto' do
-      let(:llamada_local) { Llamada.new(hora_normal, 10) }
+      let(:llamada_local) { Llamada.new(hora_normal, 10, '541162458185', '541162457898') }
       it 'retorna 11 pesos' do
         factura1.agregar_llamada(llamada_local)
         expect(factura1.monto_total).to eq(11)
@@ -33,7 +33,7 @@ describe Factura do
     end
 
     context 'dada una llamada nacional de 5 minutos' do
-      let(:llamada_nacional) { Llamada.new(hora_normal, 10) }
+      let(:llamada_nacional) { Llamada.new(hora_normal, 10, '541162458185', '541162457898') }
       let(:factura2) { Factura.new('Mayo', facturador_nacional) }
       it 'retorna 13 pesos' do
         factura2.agregar_llamada(llamada_nacional)
@@ -43,7 +43,7 @@ describe Factura do
 
     context 'dada una llamada internacional a sudamerica durante 10 minutos' do
       it 'retorna 15 pesos' do
-        let(:llamada_nacional) { Llamada.new(hora_normal, 10) }
+        let(:llamada_nacional) { Llamada.new(hora_normal, 10, '541162458185', '541162457898') }
         let(:factura2) { Factura.new('Mayo', facturador_nacional) }
       end
     end

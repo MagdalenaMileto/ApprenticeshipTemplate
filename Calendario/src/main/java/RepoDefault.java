@@ -8,7 +8,6 @@ import java.util.List;
 
 /**
  * Created by fede on 09/05/17.
-
  */
 abstract class RepoDefault<T> {
 
@@ -19,7 +18,7 @@ abstract class RepoDefault<T> {
         try {
             CriteriaBuilder criteria = entityManager.getCriteriaBuilder();
             CriteriaQuery<T> query = (CriteriaQuery<T>) criteria.createQuery();
-                    Root<T> from = query.from(entityType());
+            Root<T> from = query.from(entityType());
             query.select(from);
             return entityManager.createQuery(query).getResultList();
         } finally {
@@ -28,60 +27,56 @@ abstract class RepoDefault<T> {
 
     }
 
-    public abstract  Class<T> entityType();
+    public abstract Class<T> entityType();
 
     public List<T> searchByExample(T t) {
-		EntityManager entityManager = this.entityManager();
-		try {
-			CriteriaBuilder criteria = entityManager.getCriteriaBuilder();
-			CriteriaQuery<T> query = (CriteriaQuery<T>) criteria.createQuery();
-			Root<T> from = query.from(entityType());
-			query.select(from);
+        EntityManager entityManager = this.entityManager();
+        try {
+            CriteriaBuilder criteria = entityManager.getCriteriaBuilder();
+            CriteriaQuery<T> query = (CriteriaQuery<T>) criteria.createQuery();
+            Root<T> from = query.from(entityType());
+            query.select(from);
             generateWhere(criteria, query, from, t);
-           return  entityManager.createQuery(query).getResultList();
+            return entityManager.createQuery(query).getResultList();
         } finally {
             entityManager.close();
         }
     }
 
-    abstract def void generateWhere(CriteriaBuilder criteria, CriteriaQuery<T> query, Root<T> camposCandidato,T t)
+    abstract void generateWhere(CriteriaBuilder criteria, CriteriaQuery<T> query, Root<T> camposCandidato, T t);
 
-    def create(T t) {
-        val entityManager = this.entityManager
+    public void create(T t) {
+        EntityManager entityManager = this.entityManager();
         try {
-            entityManager => [
-            transaction.begin
-            persist(t)
-            transaction.commit
-			]
+            entityManager.getTransaction().begin();
+            entityManager.persist(t);
+            entityManager.getTransaction().commit();
+
         } catch (PersistenceException e) {
-            e.printStackTrace
-            entityManager.transaction.rollback
-            throw new RuntimeException("AH, Ha ocurrido un error. JAJAJAJA", e)
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();
+            throw new RuntimeException("AH, Ha ocurrido un error. JAJAJAJA", e);
         } finally {
-            entityManager.close
+            entityManager.close();
         }
     }
 
-    def update(T t) {
+    public void update(T t) {
         EntityManager entityManager = this.entityManager();
         try {
-            entityManager => [
-            transaction.begin
-            merge(t)
-            transaction.commit
-			]
+            entityManager.getTransaction().begin();
+            entityManager.merge(t);
+            entityManager.getTransaction().commit();
         } catch (PersistenceException e) {
-            e.printStackTrace;
-            entityManager.transaction.rollback;
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();
             throw new RuntimeException("AH, Ha ocurrido un error.", e);
         } finally {
             entityManager.close();
         }
     }
 
-    EntityManager entityManager() {
+    public EntityManager entityManager() {
         entityManagerFactory.createEntityManager();
     }
-
 }

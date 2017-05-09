@@ -77,6 +77,6 @@ abstract class RepoDefault<T> {
     }
 
     public EntityManager entityManager() {
-        entityManagerFactory.createEntityManager();
+        return entityManagerFactory.createEntityManager();
     }
 }

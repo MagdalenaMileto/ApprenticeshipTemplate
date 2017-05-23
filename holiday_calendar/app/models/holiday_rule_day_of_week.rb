@@ -1,7 +1,7 @@
 class HolidayRuleDayOfWeek < HolidayRule
+  validates :day_of_week, presence: true
 
   def holiday?(date)
-    self.day_of_month.eql? date.cwday
+    day_of_week.eql? date.cwday
   end
-
 end

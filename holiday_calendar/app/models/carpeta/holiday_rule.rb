@@ -1,0 +1,2 @@
+class HolidayRule
+end

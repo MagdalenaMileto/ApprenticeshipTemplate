@@ -1,6 +1,6 @@
 class HolidayRuleDate < HolidayRule
 
-  def non_workable?(date)
+  def holiday?(date)
     self.non_workable_date.eql? date
   end
 

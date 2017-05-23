@@ -1,6 +1,6 @@
 class HolidayRuleWithPeriodOfTime < HolidayRule
 
-  def non_workable?(date)
+  def holiday?(date)
     self.day_of_month.eql? date.cwday
   end
 

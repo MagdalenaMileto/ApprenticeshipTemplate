@@ -1,4 +1,4 @@
-class HolidayRuleDayOfMonth
+class HolidayRuleDayOfMonth < HolidayRule
 
   def initialize(month2, day_of_month2)
     @month = month2

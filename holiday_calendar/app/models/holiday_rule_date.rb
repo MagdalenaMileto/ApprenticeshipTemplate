@@ -1,4 +1,4 @@
-class HolidayRuleDate
+class HolidayRuleDate < HolidayRule
 
   def initialize(date)
     @non_workable_date = date

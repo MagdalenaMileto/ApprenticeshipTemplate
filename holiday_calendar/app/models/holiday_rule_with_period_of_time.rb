@@ -1,4 +1,4 @@
-class HolidayRuleWithPeriodOfTime
+class HolidayRuleWithPeriodOfTime < HolidayRule
 
   def initialize(week_rule, period)
     @week_rule = week_rule

@@ -4,7 +4,7 @@ class CalendarsController < ApplicationController
     render :json => @calendars
   end
 
-  def search_calendars_by
+  def find_calendar_by
     puts params
     name = params[:name]
     @calendars = Calendar.all

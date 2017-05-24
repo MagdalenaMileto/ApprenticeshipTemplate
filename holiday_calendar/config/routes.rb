@@ -3,5 +3,6 @@ Rails.application.routes.draw do
 
   #get 'Route', to: 'ControllerName#ControllerAction'
   get '/calendarios', to: 'calendars#calendars'
-  get '/calendarios/:name', to: 'calendars#find_calendar_by'
+  get '/calendarios/:name', to: 'calendars#find_calendar_by_name'
+  get '/calendarios/:id', to: 'calendars#find_calendar_by_id'
 end

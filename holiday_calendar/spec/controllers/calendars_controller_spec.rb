@@ -22,7 +22,7 @@ RSpec.describe CalendarsController, type: :controller do
   context 'Given a GET request to /calendarios/:name' do
     it 'returns all calendars with that name' do
       Calendar.create!(name: 'Argentina')
-      get :find_calendar_by
+      get :find_calendar_by_name
       expect(response).to have_http_status :ok
       expect((JSON.parse response.body).count).to be(1)
     end

@@ -1,13 +1,12 @@
-require 'spec_helper'
 require 'rails_helper'
 
 describe 'Calendario de Feriados' do
 
-  let(:holiday_calendar) { HolidayCalendar.new }
+  let(:holiday_calendar) { Calendar.new }
 
   it 'test01: un dia de semana puede ser feriado' do
     un_sabado = Date.new(2017, 4, 29)
-    holiday_calendar.add_rule(HolidayRuleDayOfWeek.new(un_sabado.cwday))
+    holiday_calendar.add_rule(DayOfWeekRule.new(day_of_week: un_sabado.cwday))
     expect(holiday_calendar.holiday? un_sabado).to be_truthy
   end
 
@@ -19,15 +18,15 @@ describe 'Calendario de Feriados' do
   it 'test03: mas de un dia de semana puede ser feriado' do
     un_sabado = Date.new(2017, 5, 6)
     un_domingo = Date.new(2017, 5, 7)
-    holiday_calendar.add_rule(HolidayRuleDayOfWeek.new(un_sabado.cwday))
-    holiday_calendar.add_rule(HolidayRuleDayOfWeek.new(un_domingo.cwday))
+    holiday_calendar.add_rule(DayOfWeekRule.new(day_of_week: un_sabado.cwday))
+    holiday_calendar.add_rule(DayOfWeekRule.new(day_of_week: un_domingo.cwday))
     expect(holiday_calendar.holiday? un_sabado).to be_truthy
     expect(holiday_calendar.holiday? un_domingo).to be_truthy
   end
 
   it 'test04: un dia de mes puede ser feriado' do
     un_primero_de_mayo = Date.new(2017, 5, 1)
-    holiday_calendar.add_rule(HolidayRuleDayOfMonth.new())
+    holiday_calendar.add_rule(DayOfMonthRule.new(month: 5, day_of_month: 1))
     #TODO
     expect(holiday_calendar.holiday? un_primero_de_mayo).to be_truthy
   end
@@ -35,8 +34,8 @@ describe 'Calendario de Feriados' do
   it 'test05: mas de un dia de mes puede ser feriado' do
     un_primero_de_mayo = Date.new(2017, 5, 1)
     un_25_de_mayo = Date.new(2017, 5, 25)
-    holiday_calendar.add_rule(HolidayRuleDayOfMonth.new(5, 1))
-    holiday_calendar.add_rule(HolidayRuleDayOfMonth.new(5, 25))
+    holiday_calendar.add_rule(DayOfMonthRule.new(month: 5, day_of_month: 1))
+    holiday_calendar.add_rule(DayOfMonthRule.new(month: 5, day_of_month: 25))
     expect(holiday_calendar.holiday? un_primero_de_mayo).to be_truthy
     expect(holiday_calendar.holiday? un_25_de_mayo).to be_truthy
   end
@@ -48,15 +47,15 @@ describe 'Calendario de Feriados' do
 
   it 'test07: una fecha puede ser feriado' do
     cumpleaños_de_eze = Date.new(2017, 10, 16)
-    holiday_calendar.add_rule(HolidayRuleDate.new(cumpleaños_de_eze))
+    holiday_calendar.add_rule(DateRule.new(date: cumpleaños_de_eze))
     expect(holiday_calendar.holiday? cumpleaños_de_eze).to be_truthy
   end
 
   it 'test08: mas de una fecha puede ser feriado' do
     cumpleaños_de_eze = Date.new(2017, 10, 16)
     cumpleaños_de_feche = Date.new(2017, 12, 22)
-    holiday_calendar.add_rule(HolidayRuleDate.new(cumpleaños_de_eze))
-    holiday_calendar.add_rule(HolidayRuleDate.new(cumpleaños_de_feche))
+    holiday_calendar.add_rule(DateRule.new(date: cumpleaños_de_eze))
+    holiday_calendar.add_rule(DateRule.new(date: cumpleaños_de_feche))
     expect(holiday_calendar.holiday? cumpleaños_de_eze).to be_truthy
     expect(holiday_calendar.holiday? cumpleaños_de_feche).to be_truthy
   end
@@ -70,9 +69,8 @@ describe 'Calendario de Feriados' do
     un_sabado = Date.new(2017, 4, 29)
     inicio = Date.new(2015, 10, 12)
     fin = Date.new(2019, 10, 12)
-    periodo = Range.new(inicio, fin)
-    holiday_calendar.add_rule(HolidayRuleWithPeriodOfTime.new(
-        HolidayRuleDayOfWeek.new(un_sabado.cwday), periodo))
+    holiday_calendar.add_rule(PeriodRule.new(
+        holiday_rule: DayOfWeekRule.new(day_of_week: un_sabado.cwday), beginning: inicio, end: fin))
     expect(holiday_calendar.holiday? un_sabado).to be_truthy
   end
 
@@ -81,8 +79,8 @@ describe 'Calendario de Feriados' do
     inicio = Date.new(2015, 10, 12)
     fin = Date.new(2019, 10, 12)
     periodo = Range.new(inicio, fin)
-    holiday_calendar.add_rule(HolidayRuleWithPeriodOfTime.new(
-        HolidayRuleDayOfWeek.new(un_sabado_fuera_del_periodo.cwday), periodo))
+    holiday_calendar.add_rule(PeriodRule.new(
+        holiday_rule: DayOfWeekRule.new(day_of_week: un_sabado_fuera_del_periodo.cwday), beginning: inicio, end: fin))
     expect(holiday_calendar.holiday? un_sabado_fuera_del_periodo).to be_falsey
   end
 
@@ -91,8 +89,8 @@ describe 'Calendario de Feriados' do
     inicio = Date.new(2015, 10, 12)
     fin = Date.new(2019, 10, 12)
     periodo = Range.new(inicio, fin)
-    holiday_calendar.add_rule(HolidayRuleWithPeriodOfTime.new(
-        HolidayRuleDayOfMonth.new(10, 16), periodo))
+    holiday_calendar.add_rule(PeriodRule.new(
+        holiday_rule: DayOfMonthRule.new(month: 10, day_of_month: 16), beginning: inicio, end: fin))
     expect(holiday_calendar.holiday? cumpleaños_de_eze).to be_truthy
   end
 
@@ -101,8 +99,8 @@ describe 'Calendario de Feriados' do
     inicio = Date.new(2015, 10, 12)
     fin = Date.new(2019, 10, 12)
     periodo = Range.new(inicio, fin)
-    holiday_calendar.add_rule(HolidayRuleWithPeriodOfTime.new(
-        HolidayRuleDayOfMonth.new(10, 16), periodo))
+    holiday_calendar.add_rule(PeriodRule.new(
+        holiday_rule: DayOfMonthRule.new(month: 10, day_of_month: 16), beginning: inicio, end: fin))
     expect(holiday_calendar.holiday? un_cumpleaños_de_eze_fuera_del_periodo).to be_falsey
   end
 

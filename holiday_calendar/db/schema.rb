@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170524035859) do
+ActiveRecord::Schema.define(version: 20170524044121) do
 
   create_table "calendars", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -28,7 +28,9 @@ ActiveRecord::Schema.define(version: 20170524035859) do
     t.date "beginning"
     t.date "end"
     t.integer "calendar_id"
+    t.integer "period_rule_id"
     t.index ["calendar_id"], name: "index_holiday_rules_on_calendar_id"
+    t.index ["period_rule_id"], name: "index_holiday_rules_on_period_rule_id"
   end
 
 end

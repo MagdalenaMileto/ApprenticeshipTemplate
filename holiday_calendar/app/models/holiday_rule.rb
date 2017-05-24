@@ -1,3 +1,2 @@
 class HolidayRule < ApplicationRecord
-
 end

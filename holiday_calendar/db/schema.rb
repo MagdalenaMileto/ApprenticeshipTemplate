@@ -10,21 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170523185644) do
+ActiveRecord::Schema.define(version: 20170524035859) do
 
-  create_table "holiday_calendars", force: :cascade do |t|
+  create_table "calendars", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "holiday_rules", force: :cascade do |t|
-    t.string "type", null: false
-    t.integer "day_of_week_holiday"
-    t.integer "month"
+    t.integer "day_of_week"
     t.integer "day_of_month"
-    t.date "date_holiday"
-    t.date "begins"
-    t.date "ends"
-    t.integer "holiday_calendar_id_id"
-    t.index ["holiday_calendar_id_id"], name: "index_holiday_rules_on_holiday_calendar_id_id"
+    t.integer "month"
+    t.string "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.date "date"
+    t.date "beginning"
+    t.date "end"
+    t.integer "calendar_id"
+    t.index ["calendar_id"], name: "index_holiday_rules_on_calendar_id"
   end
 
 end

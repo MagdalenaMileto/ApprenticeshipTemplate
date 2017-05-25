@@ -1,41 +1,86 @@
 require 'rails_helper'
 
-RSpec.describe CalendarsController, type: :controller do
-  context 'Given a GET request to /calendars withouth saving' do
-    it 'returns no calendar' do
-      get :index
-      expect(response).to have_http_status :ok
-      expect(json_response.count).to eq(0)
+describe CalendarsController do
+
+  describe '#index' do
+    context 'with a query string' do
+
+      context 'without calendars' do
+        before {get :index, params: {name: 'gent'}}
+
+        it 'is successful' do
+          expect(response).to have_http_status :ok
+        end
+
+        it 'returns an empty list' do
+          expect(json_response).to have(0).calendars
+        end
+      end
+
+      context 'with calendars' do
+        before do
+          Calendar.create!(name: 'Argentina')
+          Calendar.create!(name: 'Suiza')
+          Calendar.create!(name: 'Argentmexico')
+          get :index, {params: {name: 'gent'}}
+        end
+
+        it 'is successful' do
+          expect(response).to have_http_status :ok
+        end
+
+        it 'returns a calendar list' do
+          expect(json_response.first).to include_json(id: 1, name: 'Argentina')
+          expect(json_response.second).to include_json(id: 3, name: 'Argentmexico')
+        end
+      end
+    end
+
+    context 'without a query string' do
+
+      context 'without calendars' do
+        before {get :index}
+
+        it 'is successful' do
+          expect(response).to have_http_status :ok
+        end
+
+        it 'returns an empty list' do
+          expect(json_response).to have(0).calendars
+        end
+      end
+
+      context 'with calendars' do
+        before do
+          Calendar.create!(name: 'Argentina')
+          get :index
+        end
+
+        it 'is successful' do
+          expect(response).to have_http_status :ok
+        end
+
+        it 'returns a calendar list' do
+          expect(json_response.first).to include_json(id: 1, name: 'Argentina')
+        end
+      end
     end
   end
 
-  context 'Given a GET request to /calendars' do
-    it 'returns all calendars' do
-      calendar = Calendar.create!(name: 'Argentina')
-      get :index
-      expect(response).to have_http_status :ok
-      expect(json_response[0]['id']).to eq(calendar.id)
-      expect(json_response.count).to eq(1)
-    end
-  end
+  describe '#show' do
+    context 'when the id exists' do
 
-  context 'Given a GET request to calendars?name=argentina' do
-    it 'returns all calendars wich contains that name' do
-      Calendar.create!(name: 'Argentina')
-      Calendar.create!(name: 'Suiza')
-      Calendar.create!(name: 'Argenmexico')
-      get :index, params: { name: 'Argen'}
-      expect(response).to have_http_status :ok
-      expect((json_response).count).to eq(2)
+      it 'returns a calendar' do
+        Calendar.create!(name: 'Argentina')
+        get :show, params: {id: 1}
+        expect(json_response).to include_json(id: 1, name: 'Argentina')
+      end
     end
-  end
 
-  context 'Given a GET request to calendars/id' do
-    it 'returns all calendars with that id' do
-      calendar = Calendar.create!(name: 'Argentina')
-      get :show, params: {id: calendar.id}
-      expect(response).to have_http_status :ok
-      expect(json_response).to be(name: 'Argentina', id: 1)
+    context 'when the id is invalid' do
+      it 'returns 404 not found' do
+        expect {get :show, params: {id: 1}}.to raise_error ActiveRecord::RecordNotFound
+      end
     end
   end
 

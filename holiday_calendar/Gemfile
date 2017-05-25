@@ -40,6 +40,8 @@ group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
   gem 'rspec-rails', '~> 3.5'
+  gem 'rspec-json_expectations'
+  gem 'rspec-collection_matchers'
 end
 
 group :development do

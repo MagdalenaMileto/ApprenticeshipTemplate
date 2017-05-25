@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe CalendarsController, type: :controller do
   context 'Given a GET request to /calendarios withouth saving' do
     it 'returns no calendar' do
-      get :calendars
+      get :index
       expect(response).to have_http_status :ok
       expect((JSON.parse response.body).count).to be(0)
     end
@@ -12,7 +12,7 @@ RSpec.describe CalendarsController, type: :controller do
   context 'Given a GET request to /calendarios' do
     it 'returns all calendars' do
       calendar = Calendar.create!(name: 'Argentina')
-      get :calendars
+      get :index
       expect(response).to have_http_status :ok
       expect((JSON.parse response.body)[0]['id']).to be(calendar.id)
       expect((JSON.parse response.body).count).to be(1)
@@ -22,9 +22,11 @@ RSpec.describe CalendarsController, type: :controller do
   context 'Given a GET request to /calendarios/:name' do
     it 'returns all calendars with that name' do
       Calendar.create!(name: 'Argentina')
-      get :find_calendar_by_name
+      Calendar.create!(name: 'Suiza')
+      Calendar.create!(name: 'Argenmexico')
+      get :index, params: { name: 'Argen'}
       expect(response).to have_http_status :ok
-      expect((JSON.parse response.body).count).to be(1)
+      expect((JSON.parse response.body).count).to be(2)
     end
   end
 end

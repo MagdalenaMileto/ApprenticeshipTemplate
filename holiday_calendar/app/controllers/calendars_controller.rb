@@ -1,15 +1,10 @@
 class CalendarsController < ApplicationController
-  def calendars
-    @calendars = Calendar.all
-    render :json => @calendars
+  def index
+    render json: Calendar.where('? IS NULL OR name LIKE ?', calendar_name, "%#{calendar_name}%")
   end
 
-  def find_calendar_by_name
-    puts params
-    name = params[:name]
-    @calendars = Calendar.all
-    var = @calendars.find_by(name: name)
-    render :json => var
+  def show
+    render json: Calendar.find(calendar_id)
   end
 
   def find_calendar_by_id
@@ -17,5 +12,14 @@ class CalendarsController < ApplicationController
     id = params[:id]
     @calendars = Calendar.all
     render :json => @calendars.find(id: id)
+  end
+
+  private
+  def calendar_name
+    params[:name]
+  end
+
+  def calendar_id
+    params[:id]
   end
 end

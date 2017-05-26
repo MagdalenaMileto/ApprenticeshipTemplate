@@ -6,7 +6,7 @@ describe CalendarsController do
     context 'with a query string' do
 
       context 'without calendars' do
-        before {get :index, params: {name: 'gent'}}
+        before { get :index, params: {name: 'gent'} }
 
         it 'is successful' do
           expect(response).to have_http_status :ok
@@ -39,7 +39,7 @@ describe CalendarsController do
     context 'without a query string' do
 
       context 'without calendars' do
-        before {get :index}
+        before { get :index }
 
         it 'is successful' do
           expect(response).to have_http_status :ok
@@ -79,7 +79,7 @@ describe CalendarsController do
 
     context 'when the id is invalid' do
       it 'returns 404 not found' do
-        expect {get :show, params: {id: 1}}.to raise_error ActiveRecord::RecordNotFound
+        expect { get :show, params: {id: 1} }.to raise_error ActiveRecord::RecordNotFound
       end
     end
   end
@@ -100,7 +100,31 @@ describe CalendarsController do
 
     context 'given incomplete params' do
       it 'return an error' do
-        expect {post :create}.to raise_error ActionController::ParameterMissing
+        expect { post :create }.to raise_error ActionController::ParameterMissing
+      end
+    end
+  end
+
+  describe '#update' do
+    context 'when only update the calendar name' do
+      before do
+        calendar = Calendar.create!(name: 'Argentina', holiday_rules: [])
+        put :update, params: { id: calendar.id, calendar: {name: 'Peronia', holiday_rules: []}}
+      end
+      it 'is successful' do
+        expect(response).to have_http_status :ok
+      end
+
+      it 'returns the calendar with the new name' do
+        expect(json_response).to include_json(id: 1, name: 'Peronia')
+      end
+    end
+
+    context 'when updates the name and the holiday_rules' do
+      it 'returns the calendar completly changes' do
+        calendar = Calendar.create!(name: 'Argentina', holiday_rules: [])
+        put :update, params: { id: calendar.id, calendar: {name: 'Macrilandia', holiday_rules: [[{type: 'DayOfWeekRule', day_of_week: 1}]]}}
+        expect(json_response['holiday_rules']).to have(1).rule
       end
     end
   end

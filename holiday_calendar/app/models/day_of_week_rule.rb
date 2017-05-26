@@ -5,10 +5,6 @@ class DayOfWeekRule < HolidayRule
     day_of_week == date.cwday
   end
 
-  def between?(_date)
-    true
-  end
-
   def self.from_json(rule)
     DayOfWeekRule.new(rule.permit(:day_of_week))
   end

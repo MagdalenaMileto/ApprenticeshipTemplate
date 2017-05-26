@@ -5,6 +5,10 @@ class DayOfMonthRule < HolidayRule
     (month == date.month) && (day_of_month == date.day)
   end
 
+  def between?(_date)
+    true
+  end
+
   def self.from_json(rule)
     DayOfMonthRule.new(rule.permit(:day_of_month, :month))
   end

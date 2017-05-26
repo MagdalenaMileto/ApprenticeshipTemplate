@@ -11,6 +11,12 @@ class CalendarsController < ApplicationController
     render json: Calendar.create!(calendar_params)
   end
 
+  def update
+    calendar = Calendar.find(calendar_id)
+    calendar.update!(calendar_params)
+    render json: calendar
+  end
+
   private
   def calendar_name
     params[:name]
@@ -22,6 +28,6 @@ class CalendarsController < ApplicationController
 
   #TODO Preguntar como pasarle reglas
   def calendar_params
-    params.require(:calendar).permit(:name)
+    params.require(:calendar).permit(:name, :holiday_rules)
   end
 end

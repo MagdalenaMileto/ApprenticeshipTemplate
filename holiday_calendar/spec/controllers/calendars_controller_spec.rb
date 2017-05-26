@@ -123,7 +123,7 @@ describe CalendarsController do
     context 'when updates the name and the holiday_rules' do
       it 'returns the calendar completly changes' do
         calendar = Calendar.create!(name: 'Argentina', holiday_rules: [])
-        put :update, params: { id: calendar.id, calendar: {name: 'Macrilandia', holiday_rules: [[{type: 'DayOfWeekRule', day_of_week: 1}]]}}
+        put :update, params: { id: calendar.id, calendar: {name: 'Macrilandia', holiday_rules: [{type: 'DayOfWeekRule', day_of_week: 1}]}}
         expect(json_response['holiday_rules']).to have(1).rule
       end
     end

@@ -27,7 +27,6 @@ describe 'Calendario de Feriados' do
   it 'test04: un dia de mes puede ser feriado' do
     un_primero_de_mayo = Date.new(2017, 5, 1)
     holiday_calendar.add_rule(DayOfMonthRule.new(month: 5, day_of_month: 1))
-    #TODO
     expect(holiday_calendar.holiday? un_primero_de_mayo).to be_truthy
   end
 

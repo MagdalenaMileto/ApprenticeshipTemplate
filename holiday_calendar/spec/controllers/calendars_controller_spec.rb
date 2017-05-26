@@ -84,6 +84,21 @@ describe CalendarsController do
     end
   end
 
+  describe '#create' do
+    context 'given complete params' do
+      it 'return a calendar' do
+        post :create, params: {calendar: {name: 'Argentina'}}
+        expect(json_response).to include_json(id: 1, name: 'Argentina')
+      end
+    end
+
+    context 'given incomplete params' do
+      it 'return an error' do
+        expect {post :create}.to raise_error ActionController::ParameterMissing
+      end
+    end
+  end
+
   def json_response
     JSON.parse response.body
   end

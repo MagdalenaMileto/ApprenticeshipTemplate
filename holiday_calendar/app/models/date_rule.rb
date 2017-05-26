@@ -5,10 +5,6 @@ class DateRule < HolidayRule
     self.date == date
   end
 
-  def between?(date)
-    date.year > self.date
-  end
-
   def self.from_json(rule)
     DateRule.new(rule.permit(:date))
   end

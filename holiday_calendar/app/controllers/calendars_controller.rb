@@ -26,8 +26,14 @@ class CalendarsController < ApplicationController
     params[:id]
   end
 
-  #TODO Preguntar como pasarle reglas
+  #TODO Revisar?
   def calendar_params
-    params.require(:calendar).permit(:name, :holiday_rules)
+    calendar = params.require(:calendar)
+    name = calendar.permit(:name)
+    rules = calendar[:holiday_rules] || []
+    rules.map! do |rule|
+      HolidayRuleSerializer.deserialize(rule)
+    end
+    name.merge(holiday_rules: rules)
   end
 end

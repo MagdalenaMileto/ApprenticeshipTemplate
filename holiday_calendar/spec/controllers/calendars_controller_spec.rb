@@ -90,6 +90,12 @@ describe CalendarsController do
         post :create, params: {calendar: {name: 'Argentina'}}
         expect(json_response).to include_json(id: 1, name: 'Argentina')
       end
+
+      it 'return a calendar with rules' do
+        rules = [{type: 'DayOfWeekRule', day_of_week: 1}]
+        post :create, params: {calendar: {name: 'Argentina', holiday_rules: rules}}
+        expect(json_response['holiday_rules']).to have(1).rule
+      end
     end
 
     context 'given incomplete params' do

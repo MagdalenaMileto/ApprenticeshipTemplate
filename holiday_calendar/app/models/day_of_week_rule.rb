@@ -4,4 +4,8 @@ class DayOfWeekRule < HolidayRule
   def holiday?(date)
     day_of_week == date.cwday
   end
+
+  def self.from_json(rule)
+    DayOfWeekRule.new(rule.permit(:day_of_week))
+  end
 end

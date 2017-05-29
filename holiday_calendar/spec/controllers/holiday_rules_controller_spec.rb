@@ -23,6 +23,26 @@ describe HolidayRulesController, type: :controller do
         expect(json_response).to eq ['2017-02-25']
       end
     end
+
+    context 'when there isnt beginning' do
+      it 'returns all the holiday rules between that year' do
+        rule = DayOfMonthRule.create(day_of_month: 25, month: 2)
+        Calendar.create!(name: 'Argentina', holiday_rules: [rule])
+        get :index, {params: {id: '1', begins: '2016-1-1'}}
+
+        expect(json_response).to eq ['2017-02-25']
+      end
+    end
+
+    context 'when there isnt end' do
+      it 'returns all the holiday rules between that year' do
+        rule = DayOfMonthRule.create(day_of_month: 25, month: 2)
+        Calendar.create!(name: 'Argentina', holiday_rules: [rule])
+        get :index, {params: {id: '1', ends: '2017-1-14'}}
+
+        expect(json_response).to eq ['2017-02-25']
+      end
+    end
   end
 
   def json_response

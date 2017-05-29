@@ -13,4 +13,6 @@ class HolidayRuleSerializer < ActiveModel::Serializer
         PeriodRule.from_json(rule)
     end
   end
+
+
 end

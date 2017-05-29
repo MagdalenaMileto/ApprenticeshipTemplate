@@ -3,9 +3,4 @@ Rails.application.routes.draw do
 
   resources :calendars, only: [:index, :show, :create, :update]
   resources :holiday_rules, path: 'calendars/:id/holiday_rules', only: [:index]
-<<<<<<< HEAD
-
-=======
-  
->>>>>>> fresh
 end

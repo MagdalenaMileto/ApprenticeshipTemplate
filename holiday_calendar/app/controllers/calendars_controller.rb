@@ -1,6 +1,6 @@
 class CalendarsController < ApplicationController
   def index
-    render json: Calendar.where('? IS NULL OR name LIKE ?', calendar_name, "%#{calendar_name}%")
+    render json: Calendar.where(return_all_calendars_if_null, calendar_name, or_return_calendar_if_fits)
   end
 
   def show
@@ -24,6 +24,14 @@ class CalendarsController < ApplicationController
 
   def calendar_id
     params[:id]
+  end
+
+  def return_all_calendars_if_null
+    '? IS NULL OR name LIKE ?'
+  end
+
+  def or_return_calendar_if_fits
+    "%#{calendar_name}%"
   end
 
   #TODO Revisar?

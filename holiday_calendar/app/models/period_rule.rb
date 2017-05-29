@@ -9,8 +9,4 @@ class PeriodRule < HolidayRule
   def period
     Range.new(beginning, self.end)
   end
-
-  def self.from_json(rule)
-    PeriodRule.new(rule.permit(:holiday_rule, :beginning, :end))
-  end
 end

@@ -4,13 +4,13 @@ class HolidayRuleSerializer < ActiveModel::Serializer
   def self.deserialize(rule)
     case rule[:type]
       when 'DayOfWeekRule'
-        DayOfWeekRule.from_json(rule)
+        DayOfWeekRule.new(rule.permit(:day_of_week))
       when 'DayOfMonthRule'
-        DayOfMonthRule.from_json(rule)
+        DayOfMonthRule.new(rule.permit(:day_of_month, :month))
       when 'DateRule'
-        DateRule.from_json(rule)
+        DateRule.new(rule.permit(:date))
       when 'PeriodRule'
-        PeriodRule.from_json(rule)
+        PeriodRule.new(rule.permit(:holiday_rule, :beginning, :end))
     end
   end
 

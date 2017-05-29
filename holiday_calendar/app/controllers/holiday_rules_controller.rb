@@ -9,11 +9,12 @@ class HolidayRulesController < ApplicationController
       begins = Date.parse(begins())
       ends = Date.parse(ends())
     end
-      render json: calendar.holidays_between(begins, ends)
+    render json: calendar.holidays_between(begins, ends)
   end
 
   def create
-    
+    calendar = Calendar.find calendar_id
+    render json: calendar.add_rule(HolidayRule.create!(rule_params))
   end
 
   private
@@ -28,4 +29,11 @@ class HolidayRulesController < ApplicationController
   def ends
     params[:ends]
   end
+
+  def rule_params
+    rule = params.require(:rule)
+    type = rule.permit(:type)
+    HolidayRuleSerializer.deserialize(rule)
+  end
+
 end

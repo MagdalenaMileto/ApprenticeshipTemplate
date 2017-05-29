@@ -1,7 +1,7 @@
 class HolidayRulesController < ApplicationController
 
   def index
-    calendar = find(calendar_id)
+    calendar = Calendar.find(calendar_id)
     render json: (starts..ends).filter do |date|
       calendar.holiday?(date)
     end

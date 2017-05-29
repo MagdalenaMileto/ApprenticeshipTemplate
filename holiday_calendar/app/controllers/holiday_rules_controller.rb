@@ -12,6 +12,10 @@ class HolidayRulesController < ApplicationController
       render json: calendar.holidays_between(begins, ends)
   end
 
+  def create
+    
+  end
+
   private
   def calendar_id
     params[:id]

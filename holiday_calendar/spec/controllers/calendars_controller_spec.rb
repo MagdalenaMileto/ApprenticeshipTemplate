@@ -6,13 +6,13 @@ describe CalendarsController do
     context 'with a query string' do
 
       context 'without calendars' do
-        before { get :index, params: {name: 'gent'} }
-
         it 'is successful' do
+          get :index, params: {name: 'gent'}
           expect(response).to have_http_status :ok
         end
 
         it 'returns an empty list' do
+          get :index, params: {name: 'gent'}
           expect(json_response).to have(0).calendars
         end
       end
@@ -22,14 +22,15 @@ describe CalendarsController do
           Calendar.create!(name: 'Argentina')
           Calendar.create!(name: 'Suiza')
           Calendar.create!(name: 'Argentmexico')
-          get :index, {params: {name: 'gent'}}
         end
 
         it 'is successful' do
+          get :index, {params: {name: 'gent'}}
           expect(response).to have_http_status :ok
         end
 
         it 'returns a calendar list' do
+          get :index, {params: {name: 'gent'}}
           expect(json_response.first).to include_json(id: 1, name: 'Argentina')
           expect(json_response.second).to include_json(id: 3, name: 'Argentmexico')
         end
@@ -39,13 +40,14 @@ describe CalendarsController do
     context 'without a query string' do
 
       context 'without calendars' do
-        before { get :index }
 
         it 'is successful' do
+          get :index
           expect(response).to have_http_status :ok
         end
 
         it 'returns an empty list' do
+          get :index
           expect(json_response).to have(0).calendars
         end
       end
@@ -53,14 +55,15 @@ describe CalendarsController do
       context 'with calendars' do
         before do
           Calendar.create!(name: 'Argentina')
-          get :index
         end
 
         it 'is successful' do
+          get :index
           expect(response).to have_http_status :ok
         end
 
         it 'returns a calendar list' do
+          get :index
           expect(json_response.first).to include_json(id: 1, name: 'Argentina')
         end
       end
@@ -107,15 +110,15 @@ describe CalendarsController do
 
   describe '#update' do
     context 'when only update the calendar name' do
-      before do
+      it 'is successful' do
         calendar = Calendar.create!(name: 'Argentina', holiday_rules: [])
         put :update, params: { id: calendar.id, calendar: {name: 'Peronia', holiday_rules: []}}
-      end
-      it 'is successful' do
         expect(response).to have_http_status :ok
       end
 
       it 'returns the calendar with the new name' do
+        calendar = Calendar.create!(name: 'Argentina', holiday_rules: [])
+        put :update, params: { id: calendar.id, calendar: {name: 'Peronia', holiday_rules: []}}
         expect(json_response).to include_json(id: 1, name: 'Peronia')
       end
     end

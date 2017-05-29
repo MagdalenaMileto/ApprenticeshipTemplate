@@ -2,14 +2,14 @@ class HolidayRulesController < ApplicationController
 
   def index
     calendar = Calendar.find calendar_id
-    if (starts.nil? || ends.nil?)
-      starts = starts_actual_year
-      ends = ends_actual_year
+    if (begins.nil? || ends.nil?)
+      begins = Date.parse(Date.new(Date.today.year, 1, 1))
+      ends = Date.parse(Date.new(Date.today.year, 12, 31))
     else
-      Date.strptime(starts, '%d/%m/%Y')
-      Date.strptime(ends, '%d/%m/%Y ')
-      render json: calendar.rules_between(starts, ends)
+      begins = begins()
+      ends = ends()
     end
+      render json: calendar.holidays_between(begins, ends)
   end
 
   private
@@ -17,20 +17,11 @@ class HolidayRulesController < ApplicationController
     params[:id]
   end
 
-  def starts
-    starts = Date.parse(params[:starts])
+  def begins
+    Date.parse(params[:begins])
   end
 
   def ends
-    ends = Date.parse(params[:ends])
+    Date.parse(params[:ends])
   end
-
-  def starts_actual_year
-    Date.new(Date.today.year, 1, 1)
-  end
-
-  def ends_actual_year
-    Date.new(Date.today.year, 12, 31)
-  end
-
 end

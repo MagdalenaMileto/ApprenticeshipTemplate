@@ -14,3 +14,4 @@ describe HolidayRulesController, type: :controller do
     end
   end
 end
+

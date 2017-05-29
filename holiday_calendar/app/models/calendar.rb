@@ -10,8 +10,9 @@ class Calendar < ApplicationRecord
   end
 
   def rules_between(starts, ends)
-    holiday_rules.select do |rule|
-      rule.between?(starts, ends)
+    Range.new(starts, ends)
+    holiday_rules.select do |date|
+      holiday?(date)
     end
   end
 end

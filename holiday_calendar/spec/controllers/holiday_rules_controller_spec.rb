@@ -45,6 +45,10 @@ describe HolidayRulesController, type: :controller do
     end
   end
 
+  describe '#create' do
+    it 'return a new rule'
+  end
+
   def json_response
     JSON.parse response.body
   end

@@ -32,7 +32,6 @@ class HolidayRulesController < ApplicationController
 
   def rule_params
     rule = params.require(:rule)
-    type = rule.permit(:type)
     HolidayRuleSerializer.deserialize(rule)
   end
 

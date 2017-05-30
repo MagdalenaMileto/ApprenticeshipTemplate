@@ -46,7 +46,12 @@ describe HolidayRulesController, type: :controller do
   end
 
   describe '#create' do
-    it 'return a new rule'
+    it 'return a new rule' do
+      calendar = Calendar.create!(name: 'Argentina', holiday_rules: [])
+      post :add_rule, {params: {id: calendar.id, type: 'DayOfMonthRule', day_of_month: 25, month: 2}}
+
+      expect(json_response).to include_json(type: 'DayOfMonthRule')
+    end
   end
 
   def json_response

@@ -13,6 +13,4 @@ class HolidayRuleSerializer < ActiveModel::Serializer
         PeriodRule.new(rule.permit(:holiday_rule, :beginning, :end))
     end
   end
-
-
 end

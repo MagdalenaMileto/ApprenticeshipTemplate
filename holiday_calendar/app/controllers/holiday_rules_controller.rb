@@ -1,7 +1,7 @@
 class HolidayRulesController < ApplicationController
 
   def index
-    calendar = Calendar.find calendar_id
+    calendar = Calendar.find(calendar_id)
     if (begins.nil? || ends.nil?)
       begins = Date.new(Date.today.year, 1, 1)
       ends = Date.new(Date.today.year, 12, 31)
@@ -12,9 +12,10 @@ class HolidayRulesController < ApplicationController
     render json: calendar.holidays_between(begins, ends)
   end
 
-  def create
-    calendar = Calendar.find calendar_id
-    render json: calendar.add_rule(HolidayRule.create!(rule_params))
+  def add_rule
+    calendar = Calendar.find(calendar_id)
+    new_rule = HolidayRule new(rule_params)
+    render json: calendar.add_rule(new_rule)
   end
 
   private

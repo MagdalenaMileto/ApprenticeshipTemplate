@@ -72,7 +72,7 @@ class CalendarsController < ApplicationController
   end
 
   def rule_params
-    rule = params.require(:rule)
-    HolidayRuleSerializer.deserialize(rule)
+    type = params.require(:type)
+    HolidayRuleSerializer.deserialize_by_type(type)
   end
 end

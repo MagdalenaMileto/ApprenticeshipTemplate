@@ -175,7 +175,7 @@ describe CalendarsController do
     end
   end
 
-  describe '#create' do
+  describe '#add_new_rule' do
     it 'return a new rule' do
       calendar = Calendar.create!(name: 'Argentina', holiday_rules: [])
       post :add_new_rule, {params: {id: calendar.id, type: 'DayOfMonthRule', day_of_month: 25, month: 2}}

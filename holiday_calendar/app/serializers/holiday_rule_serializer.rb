@@ -13,4 +13,18 @@ class HolidayRuleSerializer < ActiveModel::Serializer
         PeriodRule.new(rule.permit(:holiday_rule, :beginning, :end))
     end
   end
+
+  def self.deserialize_by_type(type)
+    rule = type.constantize
+    case rule
+      when 'DayOfWeekRule'
+        DayOfWeekRule.new(rule.permit(:day_of_week))
+      when 'DayOfMonthRule'
+        DayOfMonthRule.new(rule.permit(:day_of_month, :month))
+      when 'DateRule'
+        DateRule.new(rule.permit(:date))
+      when 'PeriodRule'
+        PeriodRule.new(rule.permit(:holiday_rule, :beginning, :end))
+    end
+  end
 end

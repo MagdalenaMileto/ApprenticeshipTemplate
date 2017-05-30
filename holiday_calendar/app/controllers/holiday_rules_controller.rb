@@ -12,7 +12,7 @@ class HolidayRulesController < ApplicationController
     render json: calendar.holidays_between(begins, ends)
   end
 
-  def add_rule
+  def add_new_rule
     calendar = Calendar.find(calendar_id)
     new_rule = HolidayRule new(rule_params)
     render json: calendar.add_rule(new_rule)
